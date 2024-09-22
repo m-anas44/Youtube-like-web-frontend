@@ -8,12 +8,14 @@ import {
 import avatar from "../../assets/Header/dropdownImage.jpg";
 import "../../App.css";
 import useTheme from "../../context/switcher";
-
+import useSidebarToggle from "../../context/sideBarToggle";
 
 const Header = () => {
   const [isSearchActive, setIsSearchActive] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [changeTheme, setChangeTheme] = useState(true);
+  const [menuToogle, setMenuToogle] = useState(true);
+
   const { lightMode, darkMode } = useTheme();
   const toggleTheme = () => {
     setChangeTheme(!changeTheme);
@@ -50,13 +52,20 @@ const Header = () => {
     };
   }, [isSearchActive]);
 
+  const { toggleSidebar } = useSidebarToggle();
+  const toogleMenu = () => {
+    setMenuToogle(!menuToogle);
+    toggleSidebar();
+  };
   return (
-    <header className="bg-white dark:bg-[#161616] px-4 py-2 flex items-center justify-between gap-x-3 fixed w-full top-0 z-10">
+    <header className="bg-white dark:bg-[#0f0f0f] transition-all duration-200 px-4 py-2 flex items-center justify-between gap-x-3 sticky w-full top-0 z-10">
       {!isSearchActive && (
         <>
           {/* Left: Logo and Menu Button */}
-          <div className="flex items-center space-x-4 dark:text-white text-[#161616]">
-            <MdMenu className="text-3xl cursor-pointer" />
+          <div className="flex items-center space-x-4 dark:text-white text-[#0f0f0f]">
+            <button type="button" onClick={() => toogleMenu()}>
+              <MdMenu className="text-3xl cursor-pointer" />
+            </button>
             <div className="text-xl font-bold">YouTube</div>
           </div>
 
@@ -66,9 +75,9 @@ const Header = () => {
               <input
                 type="text"
                 placeholder="Search"
-                className="w-full bg-white dark:bg-[#161616] dark:text-white text-[#161616] p-2 pl-4 pr-12 rounded-full focus:outline-none border border-gray-600 dark:border-gray-400"
+                className="w-full bg-white dark:bg-[#0f0f0f] dark:text-white text-[#0f0f0f] p-2 pl-4 pr-12 rounded-full focus:outline-none border border-gray-600 dark:border-gray-400"
               />
-              <button className="absolute right-2 top-2 px-1 dark:text-white text-[#161616]">
+              <button className="absolute right-2 top-2 px-1 dark:text-white text-[#0f0f0f]">
                 <IoSearch className="text-2xl" />
               </button>
             </div>
@@ -78,14 +87,14 @@ const Header = () => {
           <div className="flex items-center space-x-2">
             {/* Mobile Search Icon (Moved here) */}
             <button
-              className="sm:hidden search-button dark:text-white text-[#161616] p-2"
+              className="sm:hidden search-button dark:text-white text-[#0f0f0f] p-2"
               onClick={toggleSearch}
             >
               <IoSearch className="text-2xl" />
             </button>
 
             <button
-              className="dark:text-white text-[#161616] p-2 rounded-full"
+              className="dark:text-white text-[#0f0f0f] p-2 rounded-full"
               onClick={toggleTheme}
             >
               {changeTheme ? (
@@ -115,14 +124,14 @@ const Header = () => {
                   id="dropdownInformation"
                   className="absolute right-0 z-10 mt-2 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-[#1e1e1e] dark:divide-gray-600"
                 >
-                  <div className="px-4 py-3 text-sm text-[#161616] dark:text-white">
+                  <div className="px-4 py-3 text-sm text-[#0f0f0f] dark:text-white">
                     <div>Bonnie Green</div>
                     <div className="font-medium truncate">
                       name@flowbite.com
                     </div>
                   </div>
                   <ul
-                    className="py-2 text-sm text-[#161616] dark:text-gray-200"
+                    className="py-2 text-sm text-[#0f0f0f] dark:text-gray-200"
                     aria-labelledby="dropdownInformationButton"
                   >
                     <li>
@@ -169,7 +178,7 @@ const Header = () => {
       {isSearchActive && (
         <div className="w-full flex items-center justify-between">
           <button
-            className="dark:text-white text-[#161616] p-2"
+            className="dark:text-white text-[#0f0f0f] p-2"
             onClick={() => setIsSearchActive(false)}
           >
             <IoArrowBack className="text-2xl" />
@@ -179,9 +188,9 @@ const Header = () => {
               <input
                 type="text"
                 placeholder="Search"
-                className="w-full bg-white dark:bg-[#161616] dark:text-white text-[#161616] p-2 pl-4 pr-12 rounded-full focus:outline-none border border-gray-600"
+                className="w-full bg-white dark:bg-[#0f0f0f] dark:text-white text-[#0f0f0f] p-2 pl-4 pr-12 rounded-full focus:outline-none border border-gray-600"
               />
-              <button className="absolute right-2 top-2 px-1 dark:text-white text-[#161616]">
+              <button className="absolute right-2 top-2 px-1 dark:text-white text-[#0f0f0f]">
                 <IoSearch className="text-2xl" />
               </button>
             </div>

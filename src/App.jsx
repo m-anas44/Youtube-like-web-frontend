@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
-import Header from "./components/layout/Header";
-import { Sidebar } from "./components/layout/Sidebar";
 import { ThemeProvider } from "./context/switcher";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { SidebarToogleProvider } from "./context/sideBarToggle";
+import Home from "./pages/Home";
+import About from "./pages/About";
+import Layout from "./Layout";
 
 function App() {
   const [themeMode, setThemeMode] = useState("light");
@@ -17,24 +20,23 @@ function App() {
     document.querySelector("html").classList.remove("light", "dark");
     document.querySelector("html").classList.add(themeMode);
   }, [themeMode]);
+
+  const route = createBrowserRouter([
+    {
+      path: "/",
+      element: <Layout />,
+      children: [
+        { path: "", element: <Home /> },
+        { path: "about", element: <About /> },
+      ],
+    },
+  ]);
+
   return (
     <ThemeProvider value={{ themeMode, lightMode, darkMode }}>
-      <div>
-        <Header />
-        <div className="flex">
-          <Sidebar />
-          <div className="flex-1 lg:ml-64 mt-14">
-            <div className="h-[40rem] text-[10rem]">
-              <p className="drop-shadow-xl font-bold 
-              bg-gradient-to-r from-red-600 to-pink-600
-               via-black text-slate-50 h-screen place-content-center text-center">
-                ❀ Anas ❀
-              </p>
-              <p></p>
-            </div>
-          </div>
-        </div>
-      </div>
+      <SidebarToogleProvider>
+        <RouterProvider router={route} />
+      </SidebarToogleProvider>
     </ThemeProvider>
   );
 }

@@ -1,22 +1,25 @@
-import React, { useState } from "react";
+import React from "react";
+import useSidebarToggle from "../../context/sideBarToggle";
 
 export const Sidebar = () => {
-    const [isOpen, setIsOpen] = useState(true);
+  const { isOpen } = useSidebarToggle();
+  console.log(isOpen);
   return (
     <aside
-      id="default-sidebar"
-      className={`${isOpen? "block":"hidden"} lg:block fixed top-0 left-0 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0`}
+      className={`${
+        isOpen ? "w-52" : "w-14"
+      } fixed left-0 top-0 h-full transition-all duration-200`}
       aria-label="Sidebar"
     >
-      <div className="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-[#161616] md:pt-14 ">
+      <div className="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-[#0f0f0f] md:pt-14 transition-all duration-200">
         <ul className="space-y-2 font-medium">
           <li>
             <a
               href="#"
-              className="flex items-center p-2 text-[#161616] rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+              className="flex items-center p-2 text-[#0f0f0f] rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
             >
               <svg
-                className="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-[#161616] dark:group-hover:text-white"
+                className="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-[#0f0f0f] dark:group-hover:text-white"
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="currentColor"
@@ -28,14 +31,13 @@ export const Sidebar = () => {
               <span className="ms-3">Dashboard</span>
             </a>
           </li>
-          <button className="block p-3" onClick={()=>setIsOpen(!isOpen)}>click</button>
           <li>
             <a
               href="#"
-              className="flex items-center p-2 text-[#161616] rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+              className="flex items-center p-2 text-[#0f0f0f] rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
             >
               <svg
-                className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-[#161616] dark:group-hover:text-white"
+                className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-[#0f0f0f] dark:group-hover:text-white"
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="currentColor"
@@ -44,7 +46,7 @@ export const Sidebar = () => {
                 <path d="M6.143 0H1.857A1.857 1.857 0 0 0 0 1.857v4.286C0 7.169.831 8 1.857 8h4.286A1.857 1.857 0 0 0 8 6.143V1.857A1.857 1.857 0 0 0 6.143 0Zm10 0h-4.286A1.857 1.857 0 0 0 10 1.857v4.286C10 7.169 10.831 8 11.857 8h4.286A1.857 1.857 0 0 0 18 6.143V1.857A1.857 1.857 0 0 0 16.143 0Zm-10 10H1.857A1.857 1.857 0 0 0 0 11.857v4.286C0 17.169.831 18 1.857 18h4.286A1.857 1.857 0 0 0 8 16.143v-4.286A1.857 1.857 0 0 0 6.143 10Zm10 0h-4.286A1.857 1.857 0 0 0 10 11.857v4.286c0 1.026.831 1.857 1.857 1.857h4.286A1.857 1.857 0 0 0 18 16.143v-4.286A1.857 1.857 0 0 0 16.143 10Z" />
               </svg>
               <span className="flex-1 ms-3 whitespace-nowrap">Kanban</span>
-              <span className="inline-flex items-center justify-center px-2 ms-3 text-sm font-medium text-[#161616] bg-gray-100 rounded-full dark:bg-gray-700 dark:text-gray-300">
+              <span className="inline-flex items-center justify-center px-2 ms-3 text-sm font-medium text-[#0f0f0f] bg-gray-100 rounded-full dark:bg-gray-700 dark:text-gray-300">
                 Pro
               </span>
             </a>
@@ -52,10 +54,10 @@ export const Sidebar = () => {
           <li>
             <a
               href="#"
-              className="flex items-center p-2 text-[#161616] rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+              className="flex items-center p-2 text-[#0f0f0f] rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
             >
               <svg
-                className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-[#161616] dark:group-hover:text-white"
+                className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-[#0f0f0f] dark:group-hover:text-white"
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="currentColor"
@@ -72,10 +74,10 @@ export const Sidebar = () => {
           <li>
             <a
               href="#"
-              className="flex items-center p-2 text-[#161616] rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+              className="flex items-center p-2 text-[#0f0f0f] rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
             >
               <svg
-                className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-[#161616] dark:group-hover:text-white"
+                className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-[#0f0f0f] dark:group-hover:text-white"
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="currentColor"
@@ -89,10 +91,10 @@ export const Sidebar = () => {
           <li>
             <a
               href="#"
-              className="flex items-center p-2 text-[#161616] rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+              className="flex items-center p-2 text-[#0f0f0f] rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
             >
               <svg
-                className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-[#161616] dark:group-hover:text-white"
+                className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-[#0f0f0f] dark:group-hover:text-white"
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="currentColor"
@@ -106,10 +108,10 @@ export const Sidebar = () => {
           <li>
             <a
               href="#"
-              className="flex items-center p-2 text-[#161616] rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+              className="flex items-center p-2 text-[#0f0f0f] rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
             >
               <svg
-                className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-[#161616] dark:group-hover:text-white"
+                className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-[#0f0f0f] dark:group-hover:text-white"
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -129,10 +131,10 @@ export const Sidebar = () => {
           <li>
             <a
               href="#"
-              className="flex items-center p-2 text-[#161616] rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+              className="flex items-center p-2 text-[#0f0f0f] rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
             >
               <svg
-                className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-[#161616] dark:group-hover:text-white"
+                className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-[#0f0f0f] dark:group-hover:text-white"
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="currentColor"
