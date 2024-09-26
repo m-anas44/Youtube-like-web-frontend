@@ -4,13 +4,13 @@ import { mockVideosData } from "../../mock/videosMockup";
 const VideosSection = () => {
  
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 bg-transparent">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 bg-transparent p-4">
       {mockVideosData.map((video) => (
         <div key={video.id}>
-          <img src={video.thumbnail} alt={video.title} className="thumbnail w-full h-auto" />
+          <img src={video.thumbnail} alt={video.title} className="w-full min-h-[180px] max-h-[210px] rounded-lg" />
           <div className="p-2">
-            <h3 className="video-title text-md font-semibold">{video.title}</h3>
-            <p className="channel-name text-sm text-gray-600">{video.channel}</p>
+            <h3 className="text-md font-semibold">{video.title}</h3>
+            <p className=" text-sm text-gray-600">{video.channel}</p>
             <div className="flex justify-between text-sm text-gray-500">
               <span>{video.views}</span>
               <span>{video.timePosted}</span>

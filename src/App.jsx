@@ -5,6 +5,7 @@ import { SidebarToogleProvider } from "./context/sideBarToggle";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Layout from "./Layout";
+import Register from "./pages/auth/Register";
 
 function App() {
   const [themeMode, setThemeMode] = useState("light");
@@ -30,6 +31,7 @@ function App() {
         { path: "about", element: <About /> },
       ],
     },
+    { path: "/register", element: <Register /> }
   ]);
 
   return (

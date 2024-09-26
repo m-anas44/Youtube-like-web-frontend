@@ -9,21 +9,20 @@ const Layout = () => {
   const { isOpen } = useSidebarToggle(); // Get the sidebar state
 
   return (
-    <>
+    <div className="dark:bg-[#0f0f0f] dark:text-gray-200 text-[#0f0f0f]">
       <Header />
       <div className="flex">
         <Sidebar />
         {/* Main content area should adjust based on the sidebar's state */}
         <div
-          className={`transition-all duration-200 pl-4 dark:bg-[#0f0f0f] ${
+          className={`transition-all duration-200 pl-4 ${
             isOpen ? "ml-52" : "ml-14"
           } w-full`}
         >
           <Outlet />
         </div>
       </div>
-      <Footer />
-    </>
+    </div>
   );
 };
 
