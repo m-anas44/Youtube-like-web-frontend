@@ -63,7 +63,7 @@ const Register = () => {
           },
         }
       );
-      console.log(response.data);
+      // console.log(response.data);
       // Redirect or show success message
     } catch (error) {
       console.error(

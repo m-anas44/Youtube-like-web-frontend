@@ -11,11 +11,11 @@ const Layout = () => {
   return (
     <div className="dark:bg-[#0f0f0f] dark:text-gray-200 text-[#0f0f0f]">
       <Header />
-      <div className="flex">
+      <div className="flex h-screen">
         <Sidebar />
         {/* Main content area should adjust based on the sidebar's state */}
         <div
-          className={`transition-all duration-200 pl-4 ${
+          className={`transition-all duration-200 ${
             isOpen ? "ml-52" : "ml-14"
           } w-full`}
         >
