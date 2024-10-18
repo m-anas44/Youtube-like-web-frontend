@@ -1,18 +1,17 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 import { IoSearch, IoArrowBack } from "react-icons/io5";
+import { RiVideoUploadLine } from "react-icons/ri";
 import {
   MdOutlineBrightness6,
   MdMenu,
   MdOutlineDarkMode,
 } from "react-icons/md";
-import avatar from "../../assets/Header/dropdownImage.jpg";
-import "../../App.css";
 import useTheme from "../../context/switcher";
 import useSidebarToggle from "../../context/sideBarToggle";
+import DropdownMenu from "../DropdownMenu";
 
 const Header = () => {
   const [isSearchActive, setIsSearchActive] = useState(false);
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [changeTheme, setChangeTheme] = useState(true);
   const [menuToogle, setMenuToogle] = useState(true);
 
@@ -24,41 +23,18 @@ const Header = () => {
 
   const searchInputRef = useRef(null);
 
-  const toggleDropdown = () => {
-    setIsDropdownOpen(!isDropdownOpen);
-  };
-
   const toggleSearch = () => {
     setIsSearchActive(!isSearchActive);
   };
-
-  // Collapse the search bar when clicking outside (only relevant for desktop view)
-  useEffect(() => {
-    if (!isSearchActive) return;
-
-    const handleClickOutside = (event) => {
-      if (
-        searchInputRef.current &&
-        !searchInputRef.current.contains(event.target) &&
-        !event.target.closest(".search-button")
-      ) {
-        setIsSearchActive(false);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [isSearchActive]);
 
   const { toggleSidebar } = useSidebarToggle();
   const toogleMenu = () => {
     setMenuToogle(!menuToogle);
     toggleSidebar();
   };
+
   return (
-    <header className="px-4 py-2 flex items-center justify-between gap-x-3 sticky w-full top-0 z-10 bg-white dark:bg-[#0f0f0f] backdrop-blur-lg bg-opacity-90 dark:bg-opacity-90">
+    <header className="px-4 py-2 flex items-center justify-between gap-x-3 sticky w-full top-0 z-10 bg-white dark:bg-[#0f0f0f] backdrop-blur-lg bg-opacity-80 dark:bg-opacity-90">
       {!isSearchActive && (
         <>
           {/* Left: Logo and Menu Button */}
@@ -85,14 +61,16 @@ const Header = () => {
 
           {/* Right: Icons and Buttons */}
           <div className="flex items-center space-x-2">
-            {/* Mobile Search Icon (Moved here) */}
+            {/* Mobile Search Icon */}
             <button
               className="sm:hidden dark:text-white text-[#0f0f0f] p-2"
               onClick={toggleSearch}
             >
               <IoSearch className="text-2xl" />
             </button>
-
+            <button>
+              <RiVideoUploadLine className="text-2xl" title="Upload video"/>
+            </button>
             <button
               className="dark:text-white text-[#0f0f0f] p-2 rounded-full"
               onClick={toggleTheme}
@@ -105,71 +83,7 @@ const Header = () => {
             </button>
 
             {/* Header dropdown */}
-            <div className="relative inline-block">
-              <button
-                id="dropdownInformationButton"
-                onClick={toggleDropdown}
-                className="flex items-center rounded-full align-middle"
-                type="button"
-              >
-                <img
-                  src={avatar}
-                  alt="dropdown-img"
-                  className="rounded-full w-9 h-9 object-cover"
-                />
-              </button>
-              {/* Dropdown menu */}
-              {isDropdownOpen && (
-                <div
-                  id="dropdownInformation"
-                  className="absolute right-0 z-10 mt-2 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-[#1e1e1e] dark:divide-gray-600"
-                >
-                  <div className="px-4 py-3 text-sm text-[#0f0f0f] dark:text-white">
-                    <div>Bonnie Green</div>
-                    <div className="font-medium truncate">
-                      name@flowbite.com
-                    </div>
-                  </div>
-                  <ul
-                    className="py-2 text-sm text-[#0f0f0f] dark:text-gray-200"
-                    aria-labelledby="dropdownInformationButton"
-                  >
-                    <li>
-                      <a
-                        href="#"
-                        className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-[#222222] dark:hover:text-white"
-                      >
-                        Dashboard
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-[#222222] dark:hover:text-white"
-                      >
-                        Settings
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-[#222222] dark:hover:text-white"
-                      >
-                        Earnings
-                      </a>
-                    </li>
-                  </ul>
-                  <div className="py-2">
-                    <a
-                      href="#"
-                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-[#222222] dark:text-gray-200 dark:hover:text-white"
-                    >
-                      Sign out
-                    </a>
-                  </div>
-                </div>
-              )}
-            </div>
+            <DropdownMenu />
           </div>
         </>
       )}

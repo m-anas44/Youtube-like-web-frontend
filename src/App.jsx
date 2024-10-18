@@ -7,7 +7,8 @@ import About from "./pages/About";
 import Layout from "./Layout";
 import Register from "./pages/auth/Register";
 import Login from "./pages/auth/Login";
-import Profile from "./pages/Profile";
+import Library from "./pages/Library";
+import Settings from "./pages/Settings";
 
 function App() {
   const [themeMode, setThemeMode] = useState("light");
@@ -31,7 +32,8 @@ function App() {
       children: [
         { path: "", element: <Home /> },
         { path: "about", element: <About /> },
-        { path:"profile", element: <Profile/>}
+        { path: "settings", element: <Settings /> },
+        { path: "/feed/library", element: <Library /> },
       ],
     },
     { path: "/register", element: <Register /> },

@@ -1,22 +1,28 @@
-import React from "react";
-import { mockVideosData } from "../../mock/videosMockup";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import VideoCard from "../VideoCard";
 
 const VideosSection = () => {
- 
+  const [videosData, setVideosData] = useState([]);
+
+  useEffect(() => {
+    const fetchVideos = async () => {
+      try {
+        const response = await axios.get("/api/v1/videos/getAllVideos", {
+          withCredentials: true,
+        });
+        setVideosData(response.data.data.videos);
+      } catch (error) {
+        console.error("Error fetching videos", error);
+      }
+    };
+    fetchVideos();
+  }, []);
+
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 bg-transparent p-4">
-      {mockVideosData.map((video) => (
-        <div key={video.id}>
-          <img src={video.thumbnail} alt={video.title} className="w-full min-h-[180px] max-h-[210px] rounded-lg" />
-          <div className="p-2">
-            <h3 className="text-md font-semibold">{video.title}</h3>
-            <p className=" text-sm text-gray-600">{video.channel}</p>
-            <div className="flex justify-between text-sm text-gray-500">
-              <span>{video.views}</span>
-              <span>{video.timePosted}</span>
-            </div>
-          </div>
-        </div>
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-6 p-4">
+      {videosData.map((video) => (
+        <VideoCard key={video._id} video={video} />
       ))}
     </div>
   );

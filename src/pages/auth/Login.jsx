@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -8,6 +9,7 @@ const Login = () => {
   });
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({
@@ -38,7 +40,7 @@ const Login = () => {
         },
       });
       console.log("Login successful:", response.data);
-      // Handle post-login actions like redirection
+      navigate("/");
     } catch (err) {
       setError(
         err.response && err.response.data
