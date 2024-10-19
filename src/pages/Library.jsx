@@ -11,7 +11,6 @@ function Library() {
           withCredentials: true,
         });
         setCurrentUserData(response.data.data);
-        console.log(currentUserData.fullName);
       } catch (error) {
         console.error("Error in fetching current user data", error);
       }
@@ -34,7 +33,7 @@ function Library() {
           <p className="light-theme-text dark:text-gray-400">
             @{currentUserData.username}
           </p>
-          <span className="px-3 bg-red-300 text-zinc-900 rounded-full text-sm font-semibold">
+          <span className="px-1 bg-red-500 text-black rounded text-sm font-semibold">
             Created at: &nbsp;{" "}
             {new Date(currentUserData.createdAt).toLocaleDateString()}
           </span>

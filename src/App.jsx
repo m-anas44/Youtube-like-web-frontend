@@ -9,6 +9,7 @@ import Register from "./pages/auth/Register";
 import Login from "./pages/auth/Login";
 import Library from "./pages/Library";
 import Settings from "./pages/Settings";
+import UserChannelDetails from "./pages/UserChannelDetails";
 
 function App() {
   const [themeMode, setThemeMode] = useState("light");
@@ -33,6 +34,7 @@ function App() {
         { path: "", element: <Home /> },
         { path: "about", element: <About /> },
         { path: "settings", element: <Settings /> },
+        { path: "channel/:username", element: <UserChannelDetails /> },
         { path: "/feed/library", element: <Library /> },
       ],
     },
