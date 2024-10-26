@@ -1,3 +1,45 @@
 light-theme-text {
-    color: #0f0f0f;
+  color: #0f0f0f;
+}
+
+.video-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.video-player-container {
+  position: relative;
+  overflow: hidden;
+  padding-top: 56.25%; /* 16:9 Aspect Ratio */
+}
+
+.video-player {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.volume-slider,
+.progress-bar {
+  width: 100px;
+  cursor: pointer;
+  appearance: none;
+  background: #444;
+}
+
+.volume-slider::-webkit-slider-thumb,
+.progress-bar::-webkit-slider-thumb {
+  appearance: none;
+  background: #fff;
+  width: 12px;
+  height: 12px;
 }

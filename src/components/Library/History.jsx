@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
-import VideoCard from "../VideoCard";
+import VideoCard from "../VideoComp/VideoCard";
+import axiosInstance from "../../pages/auth/refreshAccessToken";
 function History() {
   const [videos, setVideos] = useState([]);
   useEffect(() => {
     const fetchWatchHistory = async () => {
       try {
-        const response = await axios.get("/api/v1/users/history", {
-          withCredentials: true,
-        });
+        const response = await axiosInstance.get("/users/history");
         setVideos(response.data.data);
       } catch (error) {
         console.log("Error in fetching watch history", error);

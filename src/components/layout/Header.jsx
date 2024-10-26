@@ -1,26 +1,14 @@
 import { useState, useRef } from "react";
 import { IoSearch, IoArrowBack } from "react-icons/io5";
 import { RiVideoUploadLine } from "react-icons/ri";
-import {
-  MdOutlineBrightness6,
-  MdMenu,
-  MdOutlineDarkMode,
-} from "react-icons/md";
-import useTheme from "../../context/switcher";
+import { MdMenu } from "react-icons/md";
 import useSidebarToggle from "../../context/sideBarToggle";
 import DropdownMenu from "../DropdownMenu";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const [isSearchActive, setIsSearchActive] = useState(false);
-  const [changeTheme, setChangeTheme] = useState(true);
   const [menuToogle, setMenuToogle] = useState(true);
-
-  const { lightMode, darkMode } = useTheme();
-  const toggleTheme = () => {
-    setChangeTheme(!changeTheme);
-    changeTheme ? darkMode() : lightMode();
-  };
-
   const searchInputRef = useRef(null);
 
   const toggleSearch = () => {
@@ -60,7 +48,7 @@ const Header = () => {
           </div>
 
           {/* Right: Icons and Buttons */}
-          <div className="flex items-center space-x-2">
+          <div className="flex items-center sm:gap-x-3">
             {/* Mobile Search Icon */}
             <button
               className="sm:hidden dark:text-white text-[#0f0f0f] p-2"
@@ -68,19 +56,13 @@ const Header = () => {
             >
               <IoSearch className="text-2xl" />
             </button>
-            <button>
-              <RiVideoUploadLine className="text-2xl" title="Upload video"/>
-            </button>
-            <button
-              className="dark:text-white text-[#0f0f0f] p-2 rounded-full"
-              onClick={toggleTheme}
+            <Link
+              to={"/video/publishVideo"}
+              className="sm:flex hidden gap-x-1 text-sm font-semibold items-center bg-zinc-900 dark:bg-slate-100 text-gray-100 dark:text-black px-3 py-2 rounded-full"
             >
-              {changeTheme ? (
-                <MdOutlineDarkMode className="text-2xl" />
-              ) : (
-                <MdOutlineBrightness6 className="text-2xl" />
-              )}
-            </button>
+              <RiVideoUploadLine className="text-xl" title="Upload video" />
+              <span>Upload</span>
+            </Link>
 
             {/* Header dropdown */}
             <DropdownMenu />

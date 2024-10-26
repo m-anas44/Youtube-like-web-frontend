@@ -1,8 +1,8 @@
 import React from "react";
-import Header from "./components/layout/Header";
-import { NavigationBar } from "./components/layout/NavigationBar";
+import Header from "../components/layout/Header";
+import { NavigationBar } from "../components/layout/NavigationBar";
 import { Outlet } from "react-router-dom";
-import useSidebarToggle from "./context/sideBarToggle";
+import useSidebarToggle from "../context/sideBarToggle";
 
 const Layout = () => {
   const { isOpen } = useSidebarToggle(); // Get the sidebar state

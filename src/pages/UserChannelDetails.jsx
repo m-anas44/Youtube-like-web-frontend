@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { useParams } from "react-router-dom";
+import axiosInstance from "./auth/refreshAccessToken";
 
 const UserChannelDetails = () => {
   const { username } = useParams();
@@ -9,9 +9,7 @@ const UserChannelDetails = () => {
   useEffect(() => {
     const fetchChannel = async () => {
       try {
-        const response = await axios.get(`/api/v1/users/channel/${username}`, {
-          withCredentials: true,
-        });
+        const response = await axiosInstance.get(`/users/channel/${username}`);
         setChannelUser(response.data.data);
       } catch (error) {
         console.error("Error in fetching channel", error);
@@ -39,12 +37,20 @@ const UserChannelDetails = () => {
             {channelUser.fullName}
           </h2>
           <div className="flex gap-x-2">
-            <p className="text-sm text-gray-700 dark:text-zinc-400">@{channelUser.username}</p>
             <p className="text-sm text-gray-700 dark:text-zinc-400">
-            • {channelUser.subscribersCount} subscribers
+              @{channelUser.username}
+            </p>
+            <p className="text-sm text-gray-700 dark:text-zinc-400">
+              • {channelUser.subscribersCount} subscribers
             </p>
           </div>
-          <button className={`${channelUser.isSubscribed ? "dark:bg-gray-100 bg-zinc-900": "bg-red-500"} dark:text-black text-gray-100 font-semibold text-sm sm:text-base px-3 py-1 mt-2 rounded-full`}>
+          <button
+            className={`${
+              channelUser.isSubscribed
+                ? "dark:bg-gray-100 bg-zinc-900"
+                : "bg-red-500"
+            } dark:text-black text-gray-100 font-semibold text-sm sm:text-base px-3 py-1 mt-2 rounded-full`}
+          >
             {channelUser.isSubscribed ? "Subscribed" : "Subscribe"}
           </button>
         </div>

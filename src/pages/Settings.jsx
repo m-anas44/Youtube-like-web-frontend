@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FaCircleUser } from "react-icons/fa6";
-import axios from "axios";
 import { toast, Toaster } from "react-hot-toast";
+import axiosInstance from "./auth/refreshAccessToken";
 
 export default function Settings() {
   const [fullName, setFullName] = useState("");
@@ -41,12 +41,16 @@ export default function Settings() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!validateForm()) return;
+    if (!validateForm()) {
+      toast.error("Please fill in all required fields.");
+      return;
+    }
 
+    const loadingToast = toast.loading("Updating Info...");
     try {
-      await axios.patch("/api/v1/users/updateAccount", { fullName, email });
+      await axiosInstance.patch("/users/updateAccount", { fullName, email });
 
-      await axios.post("/api/v1/users/changePassword", {
+      await axiosInstance.post("/users/changePassword", {
         oldPassword,
         newPassword,
       });
@@ -54,13 +58,13 @@ export default function Settings() {
       if (avatar) {
         const formData = new FormData();
         formData.append("avatar", avatar);
-        await axios.patch("/api/v1/users/avatar", formData);
+        await axiosInstance.patch("/users/avatar", formData);
       }
 
       if (coverImage) {
         const formData = new FormData();
         formData.append("coverImage", coverImage);
-        await axios.patch("/api/v1/users/coverImage", formData);
+        await axiosInstance.patch("/users/coverImage", formData);
       }
       setLoading("Save Changes");
       setFullName("");
@@ -72,7 +76,7 @@ export default function Settings() {
       setAvatar(null);
       setCoverImage(null);
 
-      toast.success("Settings updated successfully!");
+      toast.success("Settings updated successfully!", { id: loadingToast });
     } catch (error) {
       if (
         error.response &&
@@ -81,7 +85,9 @@ export default function Settings() {
         setErrors({ oldPassword: "Old password is incorrect" });
         toast.error("Incorrect old password.");
       } else {
-        toast.error("An error occurred while updating settings.");
+        toast.error("An error occurred while updating settings.", {
+          id: loadingToast,
+        });
       }
     }
   };
@@ -89,14 +95,16 @@ export default function Settings() {
   return (
     <div className="p-5">
       <Toaster position="top-center" reverseOrder={false} />
-      <h2 className="text-4xl mb-3 font-bold leading-7">Settings</h2>
+      <h2 className="text-2xl sm:text-3xl mb-3 font-bold leading-7">
+        Settings
+      </h2>
       <p className="mt-1 text-sm leading-6">
         Some of the information will be displayed publicly so be careful what
         you share.
       </p>
-      <form onSubmit={handleSubmit}>
-        <div className="border-b border-gray-900/10 pb-12">
-          <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+      <form onSubmit={handleSubmit} className=" mb-16 mt-5 md:mb-0">
+        <div className="border-b border-gray-900/10 dark:border-zinc-800 mb-4 p-4 bg-gray-200 dark:bg-zinc-800 rounded-lg">
+          <div className=" grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
             {/* Name and Email fields */}
             <div className="sm:col-span-3">
               <label
@@ -302,7 +310,7 @@ export default function Settings() {
         <div className="flex items-center justify-end">
           <button
             type="submit"
-            className="rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus:outline-none"
+            className="rounded-md md:w-auto w-full bg-zinc-900 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-zinc-800 focus:outline-none"
           >
             {loading}
           </button>

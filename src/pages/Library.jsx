@@ -1,15 +1,13 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import "../App.css";
 import History from "../components/Library/History";
+import axiosInstance from "./auth/refreshAccessToken";
 function Library() {
   const [currentUserData, setCurrentUserData] = useState({});
   useEffect(() => {
     const fetchCurrentUser = async () => {
       try {
-        const response = await axios.get("/api/v1/users/currentUser", {
-          withCredentials: true,
-        });
+        const response = await axiosInstance.get("/users/currentUser");
         setCurrentUserData(response.data.data);
       } catch (error) {
         console.error("Error in fetching current user data", error);
@@ -40,7 +38,7 @@ function Library() {
         </div>
       </div>
       <div>
-        <History/>
+        <History />
       </div>
     </section>
   );

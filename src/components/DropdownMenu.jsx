@@ -1,11 +1,14 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
-import { Link, useNavigate } from "react-router-dom"; 
+import { Link, useNavigate } from "react-router-dom";
+import axiosInstance from "../pages/auth/refreshAccessToken";
+import useTheme from "../context/switcher";
 
 const DropdownMenu = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [currentUser, setCurrentUser] = useState(null); 
-  const navigate = useNavigate(); 
+  const [currentUser, setCurrentUser] = useState(null);
+  const [changeTheme, setChangeTheme] = useState(true);
+  const navigate = useNavigate();
+  const { lightMode, darkMode } = useTheme();
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
@@ -14,9 +17,7 @@ const DropdownMenu = () => {
   useEffect(() => {
     const getCurrentUser = async () => {
       try {
-        const response = await axios.get("/api/v1/users/currentUser", {
-          withCredentials: true,
-        });
+        const response = await axiosInstance.get("/users/currentUser");
         setCurrentUser(response.data.data);
       } catch (error) {
         console.log("Error in getting user", error);
@@ -29,13 +30,18 @@ const DropdownMenu = () => {
 
   const logoutUser = async () => {
     try {
-      const response = await axios.post("/api/v1/users/logout");
+      const response = await axiosInstance.post("/users/logout");
       console.log(response);
       setCurrentUser(null);
-      navigate("/login"); 
+      navigate("/login");
     } catch (error) {
       console.log("Error in logging out user", error);
     }
+  };
+
+  const toggleTheme = () => {
+    setChangeTheme(!changeTheme);
+    changeTheme ? darkMode() : lightMode();
   };
 
   if (!currentUser) {
@@ -90,7 +96,7 @@ const DropdownMenu = () => {
             </li>
             <li>
               <Link
-                to="/settings"
+                to="/settings/user"
                 className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-[#222222] dark:hover:text-white"
               >
                 Settings
@@ -99,6 +105,12 @@ const DropdownMenu = () => {
           </ul>
           <div className="py-2 block px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-[#222222] dark:text-gray-200 dark:hover:text-white">
             Appearance
+            <button
+              onClick={toggleTheme}
+              className="ml-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-[#222222] dark:text-gray-200 dark:hover:text-white"
+            >
+              {changeTheme ? "Dark Mode" : "Light Mode"}
+            </button>
           </div>
           <div className="py-2">
             <button

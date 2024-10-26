@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import axios from "axios";
+import axiosInstance from "./refreshAccessToken";
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -54,8 +54,8 @@ const Register = () => {
     }
 
     try {
-      const response = await axios.post(
-        "/api/v1/users/register",
+      const response = await axiosInstance.post(
+        "/users/register",
         formDataToSend,
         {
           headers: {
@@ -74,7 +74,7 @@ const Register = () => {
   };
 
   return (
-    <section className="bg-transparent">
+    <section className="dark:bg-zinc-900 bg-white">
       <div className="flex flex-col items-center px-6 py-2 mx-auto md:h-screen">
         <div className="w-full max-w-xl rounded-lg shadow">
           {/* Cover Image Section */}
@@ -138,7 +138,7 @@ const Register = () => {
               <div>
                 <label
                   htmlFor="fullname"
-                  className="block mb-2 text-sm font-medium text-zinc-900"
+                  className="block mb-2 text-sm font-medium text-zinc-900 dark:text-white"
                 >
                   Full Name
                 </label>

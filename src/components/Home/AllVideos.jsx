@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
-import VideoCard from "../VideoCard";
+import VideoCard from "../VideoComp/VideoCard";
+import axiosInstance from "../../pages/auth/refreshAccessToken";
 
 const VideosSection = () => {
   const [videosData, setVideosData] = useState([]);
@@ -8,9 +8,7 @@ const VideosSection = () => {
   useEffect(() => {
     const fetchVideos = async () => {
       try {
-        const response = await axios.get("/api/v1/videos/getAllVideos", {
-          withCredentials: true,
-        });
+        const response = await axiosInstance.get("/videos/getAllVideos");
         setVideosData(response.data.data.videos);
       } catch (error) {
         console.error("Error fetching videos", error);
