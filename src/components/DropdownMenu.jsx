@@ -65,7 +65,7 @@ const DropdownMenu = () => {
       {isDropdownOpen && (
         <div
           id="dropdownInformation"
-          className="absolute right-0 z-10 mt-2 bg-white divide-y divide-gray-100 rounded-lg shadow w-52 dark:bg-[#1e1e1e] dark:divide-gray-600"
+          className="absolute right-0 z-10 mt-2 bg-white divide-y divide-gray-100 rounded-lg shadow-lg w-52 dark:bg-[#1e1e1e] dark:divide-gray-600"
         >
           <div className="px-4 flex gap-x-3 py-3 text-sm text-[#0f0f0f] dark:text-white">
             <img

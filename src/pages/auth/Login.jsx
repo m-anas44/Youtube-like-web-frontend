@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axiosInstance from "./refreshAccessToken";
 
 const Login = () => {
@@ -105,7 +105,7 @@ const Login = () => {
               {/* Submit Button */}
               <button
                 type="submit"
-                className="w-full bg-gray-800 text-white font-semibold rounded-lg text-sm px-5 py-2.5 text-center"
+                className="w-full bg-zinc-900 text-white font-semibold rounded-lg text-sm px-5 py-2.5 text-center"
                 disabled={loading}
               >
                 {loading ? "Logging in..." : "Login"}
@@ -114,9 +114,9 @@ const Login = () => {
               {/* Don't have an account? */}
               <p className="text-sm font-light">
                 Don’t have an account?{" "}
-                <a href="#" className="font-medium hover:underline">
+                <Link to="/register" className="font-medium hover:underline">
                   Register here
-                </a>
+                </Link>
               </p>
             </form>
           </div>

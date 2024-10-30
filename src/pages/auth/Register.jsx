@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 import axiosInstance from "./refreshAccessToken";
-
+import { Link, useNavigate } from "react-router-dom";
 const Register = () => {
   const [formData, setFormData] = useState({
     fullName: "",
@@ -53,6 +53,7 @@ const Register = () => {
       formDataToSend.append(key, formData[key]);
     }
 
+    const navigate = useNavigate();
     try {
       const response = await axiosInstance.post(
         "/users/register",
@@ -63,6 +64,7 @@ const Register = () => {
           },
         }
       );
+      navigate("/login");
       // console.log(response.data);
       // Redirect or show success message
     } catch (error) {
@@ -132,7 +134,6 @@ const Register = () => {
           </div>
 
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-            
             <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit}>
               {/* Full Name */}
               <div>
@@ -230,12 +231,12 @@ const Register = () => {
                 Create an account
               </button>
 
-               {/* Already have an account? */}
-               <p className="text-sm font-light">
+              {/* Already have an account? */}
+              <p className="text-sm font-light">
                 Already have an account?{" "}
-                <a href="#" className="font-medium hover:underline">
+                <Link to="/login" className="font-medium hover:underline">
                   Login here
-                </a>
+                </Link>
               </p>
             </form>
           </div>
