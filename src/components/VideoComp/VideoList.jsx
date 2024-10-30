@@ -18,7 +18,7 @@ function VideoList() {
   }, []);
 
   return (
-    <div className="flex-grow lg:w-[30%] flex flex-col gap-y-2">
+    <div className="flex-grow lg:w-[30%] flex flex-col gap-y-2 lg:px-0 sm:px-1 px-2 pt-4 lg:pt-0">
       {videosData.map((video) => (
         <VideoListCard key={video._id} video={video} />
       ))}
