@@ -53,11 +53,11 @@ const Login = () => {
   };
 
   return (
-    <section className="bg-transparent">
+    <section className="light-bg-secondary dark-bg-primary">
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-        <div className="w-full rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0">
+        <div className="w-full rounded-lg shadow border light-border-secondary dark-border-secondary md:mt-0 sm:max-w-md xl:p-0 bg-transparent">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-            <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
+            <h1 className="text-xl font-bold font-normal-bold leading-tight tracking-tight light-text-primary dark-text-primary md:text-2xl">
               Login to your account
             </h1>
             {error && <p className="text-red-500">{error}</p>}
@@ -66,7 +66,7 @@ const Login = () => {
               <div>
                 <label
                   htmlFor="usernameOrEmail"
-                  className="block mb-2 text-sm font-medium text-gray-900"
+                  className="block mb-2 text-sm font-normal-bold light-text-primary dark-text-primary"
                 >
                   Username or Email
                 </label>
@@ -75,7 +75,7 @@ const Login = () => {
                   name="usernameOrEmail"
                   id="usernameOrEmail"
                   placeholder="Enter your username or email"
-                  className="border border-gray-400 text-gray-900 text-sm rounded-lg block w-full p-2.5"
+                  className="border light-border-primary dark-border-primary light-text-primary dark-text-primary light-bg-secondary dark-bg-secondary text-sm rounded-lg block w-full p-2.5"
                   required=""
                   value={formData.usernameOrEmail}
                   onChange={handleChange}
@@ -86,7 +86,7 @@ const Login = () => {
               <div>
                 <label
                   htmlFor="password"
-                  className="block mb-2 text-sm font-medium text-gray-900"
+                  className="block mb-2 text-sm font-normal-bold light-text-primary dark-text-primary"
                 >
                   Password
                 </label>
@@ -95,7 +95,7 @@ const Login = () => {
                   name="password"
                   id="password"
                   placeholder="••••••••"
-                  className="border border-gray-400 text-gray-900 text-sm rounded-lg block w-full p-2.5"
+                  className="border light-border-primary dark-border-primary light-text-primary dark-text-primary light-bg-secondary dark-bg-secondary text-sm rounded-lg block w-full p-2.5"
                   required=""
                   value={formData.password}
                   onChange={handleChange}
@@ -105,16 +105,16 @@ const Login = () => {
               {/* Submit Button */}
               <button
                 type="submit"
-                className="w-full bg-zinc-900 text-white font-semibold rounded-lg text-sm px-5 py-2.5 text-center"
+                className="w-full light-btn dark-btn font-normal-bold rounded-lg text-sm px-5 py-2.5 text-center"
                 disabled={loading}
               >
                 {loading ? "Logging in..." : "Login"}
               </button>
 
               {/* Don't have an account? */}
-              <p className="text-sm font-light">
+              <p className="text-sm light-text-primary dark-text-primary font-normal-bold">
                 Don’t have an account?{" "}
-                <Link to="/register" className="font-medium hover:underline">
+                <Link to="/register" className="underline">
                   Register here
                 </Link>
               </p>

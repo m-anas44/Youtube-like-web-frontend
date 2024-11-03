@@ -65,16 +65,16 @@ const DropdownMenu = () => {
       {isDropdownOpen && (
         <div
           id="dropdownInformation"
-          className="absolute right-0 z-10 mt-2 bg-white divide-y divide-gray-100 rounded-lg shadow-lg w-52 dark:bg-[#1e1e1e] dark:divide-gray-600"
+          className="absolute right-0 z-10 mt-2 bg-white divide-y divide-gray-200 rounded-lg shadow-lg w-52 dark:bg-[#1e1e1e] dark:divide-gray-800"
         >
-          <div className="px-4 flex gap-x-3 py-3 text-sm text-[#0f0f0f] dark:text-white">
+          <div className="px-4 flex gap-x-3 py-3 text-sm light-text-primary dark-text-primary font-normal-bold">
             <img
               src={currentUser.avatar}
               alt="user avatar"
               className="w-10 h-10 rounded object-cover"
             />
             <div>
-              <div className="font-medium truncate text-gray-400">
+              <div className="font-medium truncate light-text-secondary dark-text-secondary">
                 @{currentUser.username}
               </div>
               <div className="capitalize tracking-tight truncate">
@@ -83,7 +83,7 @@ const DropdownMenu = () => {
             </div>
           </div>
           <ul
-            className="py-2 text-sm text-[#0f0f0f] dark:text-gray-200"
+            className="py-2 text-sm light-text-primary dark-text-primary font-normal-bold font-normal"
             aria-labelledby="dropdownInformationButton"
           >
             <li>
@@ -103,11 +103,11 @@ const DropdownMenu = () => {
               </Link>
             </li>
           </ul>
-          <div className="py-2 block px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-[#222222] dark:text-gray-200 dark:hover:text-white">
+          <div className="py-2 block px-4 text-sm light-text-primary dark-text-primary font-normal-bold font-normal">
             Appearance
             <button
               onClick={toggleTheme}
-              className="ml-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-[#222222] dark:text-gray-200 dark:hover:text-white"
+              className="ml-2 text-sm"
             >
               {changeTheme ? "Dark Mode" : "Light Mode"}
             </button>
@@ -115,7 +115,7 @@ const DropdownMenu = () => {
           <div className="py-2">
             <button
               onClick={() => logoutUser()}
-              className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-[#222222] dark:text-gray-200 dark:hover:text-white"
+              className="block w-full text-left px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-[#222222] light-text-primary dark-text-primary font-normal-bold font-normal"
             >
               Sign out
             </button>

@@ -19,9 +19,9 @@ const UserChannelDetails = () => {
   }, [username]);
 
   return (
-    <div className="bg-transparent text-white px-2 md:mx-10 my-6">
+    <div className="bg-transparent light-text-primary dark-text-primary px-2 md:mx-10 my-6">
       <img
-        className="h-auto max-h-[17rem] w-full object-cover rounded-2xl shadow-md"
+        className="h-auto max-h-[17rem] w-full object-cover rounded-lg shadow-md"
         src={channelUser.coverImage || "https://via.placeholder.com/800x200"}
         alt="Channel Cover"
       />
@@ -33,23 +33,23 @@ const UserChannelDetails = () => {
           alt={channelUser.fullName || "Channel User"}
         />
         <div className="ml-4">
-          <h2 className="text-xl sm:text-2xl font-bold uppercase text-zinc-900 dark:text-gray-100">
+          <h2 className="text-xl sm:text-2xl font-bold uppercase">
             {channelUser.fullName}
           </h2>
           <div className="flex gap-x-2">
-            <p className="text-sm text-gray-700 dark:text-zinc-400">
+            <p className="text-sm light-text-secondary dark-text-secondary font-normal-bold">
               @{channelUser.username}
             </p>
-            <p className="text-sm text-gray-700 dark:text-zinc-400">
+            <p className="text-sm light-text-secondary dark-text-secondary font-normal-bold">
               • {channelUser.subscribersCount} subscribers
             </p>
           </div>
           <button
-            className={`${
+            className={`font-normal-bold ${
               channelUser.isSubscribed
-                ? "dark:bg-gray-100 bg-zinc-900"
-                : "bg-red-500"
-            } dark:text-black text-gray-100 font-semibold text-sm sm:text-base px-3 py-1 mt-2 rounded-full`}
+                ? "light-btn dark-btn"
+                : "bg-[#f53f3f]"
+            } dark:text-black text-gray-100 font-semibold text-sm sm:text-base px-3 py-1 mt-2 rounded-lg`}
           >
             {channelUser.isSubscribed ? "Subscribed" : "Subscribe"}
           </button>

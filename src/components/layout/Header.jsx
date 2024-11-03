@@ -4,21 +4,30 @@ import { RiVideoUploadLine } from "react-icons/ri";
 import { MdMenu } from "react-icons/md";
 import useSidebarToggle from "../../context/sideBarToggle";
 import DropdownMenu from "../DropdownMenu";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Header = () => {
   const [isSearchActive, setIsSearchActive] = useState(false);
-  const [menuToogle, setMenuToogle] = useState(true);
+  const [menuToggle, setMenuToggle] = useState(true);
+  const [searchQuery, setSearchQuery] = useState("");
   const searchInputRef = useRef(null);
+  const navigate = useNavigate();
 
   const toggleSearch = () => {
     setIsSearchActive(!isSearchActive);
   };
 
   const { toggleSidebar } = useSidebarToggle();
-  const toogleMenu = () => {
-    setMenuToogle(!menuToogle);
+  const toggleMenu = () => {
+    setMenuToggle(!menuToggle);
     toggleSidebar();
+  };
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (searchQuery) {
+      navigate(`/search?query=${encodeURIComponent(searchQuery)}`);
+    }
   };
 
   return (
@@ -26,8 +35,8 @@ const Header = () => {
       {!isSearchActive && (
         <>
           {/* Left: Logo and Menu Button */}
-          <div className="flex items-center space-x-4 dark:text-white">
-            <button type="button" onClick={() => toogleMenu()}>
+          <div className="flex items-center space-x-4 dark-text-primary">
+            <button type="button" onClick={() => toggleMenu()}>
               <MdMenu className="text-3xl cursor-pointer" />
             </button>
             <div className="text-xl font-bold">YouTube</div>
@@ -35,30 +44,29 @@ const Header = () => {
 
           {/* Center: Search Bar for Larger Screens */}
           <div className="flex-grow max-w-md mx-auto hidden sm:block">
-            <div ref={searchInputRef} className="relative">
+            <form onSubmit={handleSearch} className="relative">
               <input
                 type="text"
                 placeholder="Search"
-                className="w-full bg-white dark:bg-[#0f0f0f] dark:text-white text-[#0f0f0f] p-2 pl-4 pr-12 rounded-full focus:outline-none border border-gray-600 dark:border-zinc-700"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full bg-transparent light-text-primary dark-text-primary p-1.5 pl-4 pr-12 rounded-full focus:outline-none border border-gray-700 placeholder:text-gray-700"
               />
-              <button className="absolute right-2 top-2 px-1 dark:text-white text-[#0f0f0f]">
+              <button type="submit" className="absolute right-2 top-2 px-1 light-text-primary dark-text-primary">
                 <IoSearch className="text-2xl" />
               </button>
-            </div>
+            </form>
           </div>
 
           {/* Right: Icons and Buttons */}
-          <div className="flex items-center sm:gap-x-3">
+          <div className="flex items-center sm:gap-x-3 bg-transparent">
             {/* Mobile Search Icon */}
-            <button
-              className="sm:hidden dark:text-white text-[#0f0f0f] p-2"
-              onClick={toggleSearch}
-            >
+            <button className="sm:hidden light-text-primary dark-text-primary p-2" onClick={toggleSearch}>
               <IoSearch className="text-2xl" />
             </button>
             <Link
               to={"/video/publishVideo"}
-              className="sm:flex hidden gap-x-1 text-sm font-semibold items-center bg-zinc-900 dark:bg-slate-100 text-gray-100 dark:text-black px-3 py-2 rounded-full"
+              className="sm:flex hidden gap-x-1 text-sm font-semibold items-center light-btn dark-btn px-3 py-2 rounded-full"
             >
               <RiVideoUploadLine className="text-xl" title="Upload video" />
               <span>Upload</span>
@@ -73,23 +81,22 @@ const Header = () => {
       {/* Mobile Search Bar Mode */}
       {isSearchActive && (
         <div className="w-full flex items-center justify-between">
-          <button
-            className="dark:text-white text-[#0f0f0f] p-2"
-            onClick={() => setIsSearchActive(false)}
-          >
+          <button className="light-text-primary dark-text-primary p-2" onClick={() => setIsSearchActive(false)}>
             <IoArrowBack className="text-2xl" />
           </button>
           <div className="flex-grow mx-auto">
-            <div ref={searchInputRef} className="relative w-full">
+            <form onSubmit={handleSearch} className="relative w-full">
               <input
                 type="text"
                 placeholder="Search"
-                className="w-full bg-transparent dark:text-white text-[#0f0f0f] p-2 pl-4 pr-12 rounded-full focus:outline-none border border-zinc-700"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full bg-transparent light-text-primary dark-text-primary p-2 pl-4 pr-12 rounded-full focus:outline-none border border-[#424242] placeholder:text-gray-900"
               />
-              <button className="absolute right-2 top-2 px-1 dark:text-white text-[#0f0f0f]">
+              <button type="submit" className="absolute right-2 top-2 px-1 light-text-primary dark-text-primary">
                 <IoSearch className="text-2xl" />
               </button>
-            </div>
+            </form>
           </div>
         </div>
       )}

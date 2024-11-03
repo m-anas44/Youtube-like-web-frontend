@@ -7,7 +7,7 @@ const WatchLayout = () => {
 //   const { isOpen } = useSidebarToggle(); // Get the sidebar state
 
   return (
-    <div className="dark:bg-[#0f0f0f] dark:text-[#f1f1f1] text-[#0f0f0f] min-h-screen">
+    <div className="dark-bg-primary dark-text-primary light-text-primary min-h-screen">
       <Header />
       <Outlet />
     </div>

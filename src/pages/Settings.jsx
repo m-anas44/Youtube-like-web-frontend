@@ -103,7 +103,7 @@ export default function Settings() {
         you share.
       </p>
       <form onSubmit={handleSubmit} className=" mb-16 mt-5 md:mb-0">
-        <div className="border-b border-gray-900/10 dark:border-zinc-800 mb-4 p-4 bg-gray-200 dark:bg-zinc-800 rounded-lg">
+        <div className="border-b light-border-primary dark-border-primary mb-4 p-4 bg-transparent">
           <div className=" grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
             {/* Name and Email fields */}
             <div className="sm:col-span-3">
@@ -120,10 +120,10 @@ export default function Settings() {
                   type="text"
                   value={fullName}
                   onChange={(e) => setFullName(e.target.value)}
-                  className={`block w-full rounded-md bg-gray-50 dark:bg-zinc-900 border ${
+                  className={`block w-full rounded-md light-bg-secondary dark-bg-secondary light-border-primary dark-border-primary border ${
                     errors.fullName && !fullName
                       ? "border-red-500"
-                      : "border-gray-300 dark:border-zinc-700"
+                      : "light-border-secondary dark-border-secondary"
                   } px-2 py-1.5 sm:text-sm sm:leading-6`}
                 />
                 {errors.fullName && !fullName && (
@@ -146,10 +146,10 @@ export default function Settings() {
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className={`block w-full rounded-md bg-gray-50 dark:bg-zinc-900 border ${
+                  className={`block w-full rounded-md light-bg-secondary dark-bg-secondary light-border-primary dark-border-primary border ${
                     errors.email && !email
                       ? "border-red-500"
-                      : "border-gray-300 dark:border-zinc-700"
+                      : "light-border-secondary dark-border-secondary"
                   } px-2 py-1.5 sm:text-sm sm:leading-6`}
                 />
                 {errors.email && !email && (
@@ -176,10 +176,10 @@ export default function Settings() {
                       type="password"
                       value={oldPassword}
                       onChange={(e) => setOldPassword(e.target.value)}
-                      className={`block w-full rounded-md bg-gray-50 dark:bg-zinc-900 border ${
+                      className={`block w-full rounded-md light-bg-secondary dark-bg-secondary light-border-primary dark-border-primary border ${
                         errors.oldPassword
                           ? "border-red-500"
-                          : "border-gray-300 dark:border-zinc-700"
+                          : "light-border-secondary dark-border-secondary"
                       } px-2 py-1.5 sm:text-sm sm:leading-6`}
                     />
                     {errors.oldPassword && (
@@ -204,10 +204,10 @@ export default function Settings() {
                       type="password"
                       value={newPassword}
                       onChange={(e) => setNewPassword(e.target.value)}
-                      className={`block w-full rounded-md bg-gray-50 dark:bg-zinc-900 border ${
+                      className={`block w-full rounded-md light-bg-secondary dark-bg-secondary light-border-primary dark-border-primary border ${
                         errors.newPassword
                           ? "border-red-500"
-                          : "border-gray-300 dark:border-zinc-700"
+                          : "light-border-secondary dark-border-secondary"
                       } px-2 py-1.5 sm:text-sm sm:leading-6`}
                     />
                     {errors.newPassword && (
@@ -236,7 +236,7 @@ export default function Settings() {
                     className="h-12 w-12 rounded-full"
                   />
                 ) : (
-                  <FaCircleUser className="h-12 w-12 dark:text-gray-300 text-gray-300" />
+                  <FaCircleUser className="h-12 w-12 text-[#817f7f]" />
                 )}
                 <input
                   type="file"
@@ -244,11 +244,11 @@ export default function Settings() {
                   name="avatar"
                   accept="image/*"
                   onChange={handleAvatarChange}
-                  className={`rounded-md bg-gray-50 dark:bg-zinc-900 border ${
+                  className={`rounded-md light-bg-secondary dark-bg-secondary light-border-primary dark-border-primary border ${
                     errors.avatar && !avatar
                       ? "border-red-500"
-                      : "border-gray-300 dark:border-zinc-700"
-                  } px-1.5 py-1.5 text-sm font-semibold`}
+                      : "light-border-secondary dark-border-secondary"
+                  } px-1.5 py-1.5 text-sm tracking-wide font-normal-bold`}
                 />
               </div>
               {errors.avatar && !avatar && (
@@ -264,7 +264,7 @@ export default function Settings() {
                 Cover Image
               </label>
 
-              <div className="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 bg-gray-50 dark:bg-zinc-900 px-6 py-10 dark:border-zinc-700">
+              <div className="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 light-border-primary dark-border-primary px-6 py-10 dark:border-zinc-700">
                 {coverImagePreview ? (
                   <img
                     src={coverImagePreview}
@@ -275,7 +275,7 @@ export default function Settings() {
                   <div className="text-center">
                     <FaCircleUser
                       aria-hidden="true"
-                      className="mx-auto h-12 w-12 dark:text-gray-300 text-gray-300"
+                      className="mx-auto h-12 w-12 text-[#817f7f]"
                     />
                     <div className="mt-4 flex text-sm leading-6">
                       <label
@@ -294,7 +294,7 @@ export default function Settings() {
                       </label>
                       <p className="pl-1">an image file</p>
                     </div>
-                    <p className="text-xs leading-5 text-gray-600">
+                    <p className="text-xs leading-5 text-[#817f7f]">
                       PNG, JPG, GIF up to 10MB
                     </p>
                   </div>
@@ -310,7 +310,7 @@ export default function Settings() {
         <div className="flex items-center justify-end">
           <button
             type="submit"
-            className="rounded-md md:w-auto w-full bg-zinc-900 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-zinc-800 focus:outline-none"
+            className="rounded-md md:w-auto w-full light-btn dark-btn font-normal-bold px-3 py-2 text-sm font-semibold shadow-sm focus:outline-none"
           >
             {loading}
           </button>

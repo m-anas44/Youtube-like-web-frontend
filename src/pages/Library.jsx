@@ -25,13 +25,13 @@ function Library() {
           className="w-20 h-20 rounded object-cover"
         />
         <div>
-          <h2 className="text-2xl uppercase tracking-tight font-semibold">
-            {currentUserData.fullName}
-          </h2>
-          <p className="light-theme-text dark:text-gray-400">
+          <p className="light-text-secondary dark-text-secondary">
             @{currentUserData.username}
           </p>
-          <span className="px-1 bg-red-500 text-black rounded text-sm font-semibold">
+          <h2 className="text-2xl uppercase tracking-tight font-normal-bold">
+            {currentUserData.fullName}
+          </h2>
+          <span className="px-1 bg-red-400 text-black rounded text-sm font-normal-bold">
             Created at: &nbsp;{" "}
             {new Date(currentUserData.createdAt).toLocaleDateString()}
           </span>

@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const VideoCard = ({ video }) => {
   return (
     <Link to={`/watch/${video._id}`}>
-      <div key={video._id} className="flex flex-col">
+      <div className="flex flex-col">
         {/* Thumbnail with duration */}
         <div
           className="relative w-full overflow-hidden rounded-lg"
@@ -22,7 +22,7 @@ const VideoCard = ({ video }) => {
           </span>
         </div>
         {/* Video details */}
-        <div className="flex py-3 space-x-2">
+        <div className="flex py-3 space-x-2 font-normal-bold">
           <img
             src={video.owner.avatar}
             alt="Owner Avatar"
@@ -31,13 +31,13 @@ const VideoCard = ({ video }) => {
             className="rounded-full w-10 h-9 object-cover select-none"
           />
           <div className="w-full">
-            <h3 className="text-sm font-semibold tracking-wide text-gray-900 dark:text-gray-100 line-clamp-2">
+            <h3 className="text-sm font-bold tracking-wide light-text-primary dark-text-primary line-clamp-2">
               {video.title}
             </h3>
-            <p className="text-sm text-gray-500 dark:text-gray-400">
+            <p className="text-sm light-text-secondary dark-text-secondary">
               {video.owner.username}
             </p>
-            <div className="flex justify-between text-xs text-gray-400 select-none">
+            <div className="flex justify-between text-xs light-text-secondary dark-text-secondary select-none">
               <span>{video.views} views</span>
               <span>
                 {formatDistanceToNow(new Date(video.createdAt), {

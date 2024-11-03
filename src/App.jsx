@@ -3,7 +3,6 @@ import { ThemeProvider } from "./context/switcher";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { SidebarToogleProvider } from "./context/sideBarToggle";
 import Home from "./pages/Home";
-import About from "./pages/About";
 import Layout from "./Parentlayout/Layout";
 import Register from "./pages/auth/Register";
 import Login from "./pages/auth/Login";
@@ -14,6 +13,8 @@ import PublishVideo from "./pages/video/PublishVideo";
 import VideoSettings from "./pages/video/VideoSettings";
 import WatchVideo from "./pages/video/WatchVideo";
 import WatchLayout from "./Parentlayout/WatchLayout";
+import Dashboard from "./pages/dashboard/Dashboard";
+import SearchResults from "./pages/video/SearchResults";
 
 function App() {
   const [themeMode, setThemeMode] = useState("light");
@@ -36,12 +37,13 @@ function App() {
       element: <Layout />,
       children: [
         { path: "", element: <Home /> },
-        { path: "about", element: <About /> },
         { path: "settings/user", element: <Settings /> },
         { path: "settings/video/:videoID", element: <VideoSettings /> },
         { path: "channel/:username", element: <UserChannelDetails /> },
-        { path: "/feed/library", element: <Library /> },
-        { path: "/video/publishVideo", element: <PublishVideo /> },
+        { path: "feed/library", element: <Library /> },
+        { path: "video/publishVideo", element: <PublishVideo /> },
+        { path: "dashboard", element: <Dashboard /> },
+        { path: "search", element: <SearchResults /> },
       ],
     },
     {

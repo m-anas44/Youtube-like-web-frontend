@@ -13,20 +13,20 @@ const VideoDescription = ({ description, views, createdAt }) => {
     : "Unknown date";
 
   return (
-    <section className="p-4 rounded-lg bg-[#f2f2f2] dark:bg-zinc-900 text-zinc-100 my-3">
+    <section className="p-4 rounded-lg light-bg-secondary dark-bg-secondary my-3 font-normal-bold">
       {/* Metadata: Views and Tags */}
-      <div className="text-sm text-gray-500 flex gap-x-3 items-center font-semibold">
+      <div className="text-sm light-text-secondary dark-text-secondary flex gap-x-3 items-center">
         <span>{views} views</span>
         <span>• {formattedDate}</span>
       </div>
 
       {/* Main Description Content */}
       <div
-        className={`mt-2 text-black dark:text-gray-100 ${
+        className={`mt-2 ${
           isExpanded ? "" : "line-clamp-3"
         }`}
       >
-        <pre className="text-wrap font-sans">{description}</pre>
+        <pre className="text-wrap font-normal-bold font-normal">{description}</pre>
       </div>
 
       {/* More/Less Button */}

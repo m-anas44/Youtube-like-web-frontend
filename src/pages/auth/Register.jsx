@@ -76,12 +76,12 @@ const Register = () => {
   };
 
   return (
-    <section className="dark:bg-zinc-900 bg-white">
-      <div className="flex flex-col items-center px-6 py-2 mx-auto md:h-screen">
-        <div className="w-full max-w-xl rounded-lg shadow">
+    <section className="light-bg-secondary dark-bg-primary">
+      <div className="flex flex-col items-center px-6 py-2 mx-auto">
+        <div className="w-full max-w-xl rounded-lg shadow bg-transparent border light-border-secondary dark-border-secondary">
           {/* Cover Image Section */}
           <div
-            className="relative mb-8 w-full h-40 bg-gray-200 rounded-t-lg cursor-pointer"
+            className="relative mb-8 w-full h-40 bg-[#c1c1c1] dark:bg-[#3a3a3a] rounded-t-lg cursor-pointer"
             onClick={handleCoverClick}
           >
             {coverImagePreview ? (
@@ -91,7 +91,7 @@ const Register = () => {
                 className="absolute top-0 left-0 w-full h-full object-cover rounded-t-lg"
               />
             ) : (
-              <span className="text-gray-500 absolute inset-0 flex items-center justify-center">
+              <span className="dark:text-[#acacac] text-[#5f5f5f]  text-sm absolute inset-0 flex items-center justify-center">
                 Upload Cover Image
               </span>
             )}
@@ -108,7 +108,7 @@ const Register = () => {
           {/* Avatar Section */}
           <div className="relative flex justify-center">
             <div
-              className="relative w-32 h-32 rounded-full bg-gray-300 cursor-pointer border-4 border-white -mt-24 shadow-md"
+              className="relative w-32 h-32 rounded-full dark:bg-[#3a3a3a] bg-[#c1c1c1] cursor-pointer border-4 light-border-secondary dark-border-secondary -mt-24 shadow-md"
               onClick={handleAvatarClick}
             >
               {avatarPreview ? (
@@ -118,7 +118,7 @@ const Register = () => {
                   className="w-full h-full rounded-full object-cover"
                 />
               ) : (
-                <span className="text-gray-500 absolute inset-0 flex items-center justify-center">
+                <span className="dark:text-[#acacac] text-[#5f5f5f] text-sm absolute inset-0 flex items-center justify-center">
                   Upload Avatar
                 </span>
               )}
@@ -139,7 +139,7 @@ const Register = () => {
               <div>
                 <label
                   htmlFor="fullname"
-                  className="block mb-2 text-sm font-medium text-zinc-900 dark:text-white"
+                  className="block mb-2 text-sm font-normal-bold light-text-primary dark-text-primary"
                 >
                   Full Name
                 </label>
@@ -148,7 +148,7 @@ const Register = () => {
                   name="fullName"
                   id="fullname"
                   placeholder="Full Name"
-                  className="border border-gray-400 text-zinc-900 text-sm rounded-lg block w-full p-2.5"
+                  className="border light-border-primary dark-border-primary light-bg-secondary dark-bg-secondary light-text-primary dark-text-primary text-sm rounded-lg block w-full p-2.5"
                   required
                   value={formData.fullName}
                   onChange={(e) =>
@@ -161,7 +161,7 @@ const Register = () => {
               <div>
                 <label
                   htmlFor="username"
-                  className="block mb-2 text-sm font-medium text-zinc-900"
+                  className="block mb-2 text-sm font-normal-bold light-text-primary dark-text-primary"
                 >
                   Username
                 </label>
@@ -170,7 +170,7 @@ const Register = () => {
                   name="username"
                   id="username"
                   placeholder="Username"
-                  className="border border-gray-400 text-zinc-900 text-sm rounded-lg block w-full p-2.5"
+                  className="border light-border-primary dark-border-primary light-bg-secondary dark-bg-secondary light-text-primary dark-text-primary text-sm rounded-lg block w-full p-2.5"
                   required
                   value={formData.username}
                   onChange={(e) =>
@@ -183,7 +183,7 @@ const Register = () => {
               <div>
                 <label
                   htmlFor="email"
-                  className="block mb-2 text-sm font-medium text-zinc-900"
+                  className="block mb-2 text-sm font-normal-bold light-text-primary dark-text-primary"
                 >
                   Your email
                 </label>
@@ -191,7 +191,7 @@ const Register = () => {
                   type="email"
                   name="email"
                   id="email"
-                  className="border border-gray-400 text-zinc-900 text-sm rounded-lg block w-full p-2.5"
+                  className="border light-border-primary dark-border-primary light-bg-secondary dark-bg-secondary light-text-primary dark-text-primary text-sm rounded-lg block w-full p-2.5"
                   placeholder="name@company.com"
                   required
                   value={formData.email}
@@ -205,7 +205,7 @@ const Register = () => {
               <div>
                 <label
                   htmlFor="password"
-                  className="block mb-2 text-sm font-medium text-zinc-900"
+                  className="block mb-2 text-sm font-normal-bold light-text-primary dark-text-primary"
                 >
                   Password
                 </label>
@@ -214,7 +214,7 @@ const Register = () => {
                   name="password"
                   id="password"
                   placeholder="••••••••"
-                  className="border border-gray-400 text-zinc-900 text-sm rounded-lg block w-full p-2.5"
+                  className="border light-border-primary dark-border-primary light-bg-secondary dark-bg-secondary light-text-primary dark-text-primary text-sm rounded-lg block w-full p-2.5"
                   required
                   value={formData.password}
                   onChange={(e) =>
@@ -226,15 +226,15 @@ const Register = () => {
               {/* Submit Button */}
               <button
                 type="submit"
-                className="w-full bg-zinc-800 text-white focus:outline-none font-semibold rounded-lg text-sm px-5 py-2.5 text-center"
+                className="w-full light-btn dark-btn focus:outline-none font-normal-bold rounded-lg text-sm px-5 py-2.5 text-center"
               >
                 Create an account
               </button>
 
               {/* Already have an account? */}
-              <p className="text-sm font-light">
+              <p className="text-sm light-text-primary dark-text-primary font-normal-bold">
                 Already have an account?{" "}
-                <Link to="/login" className="font-medium hover:underline">
+                <Link to="/login" className="underline">
                   Login here
                 </Link>
               </p>
