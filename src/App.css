@@ -106,3 +106,11 @@
   width: 12px;
   height: 12px;
 }
+
+
+
+/* Styles for Firefox */
+aside {
+  scrollbar-width: 3px; /* Reduced to make it thinner */
+  scrollbar-color: #888 transparent;
+}

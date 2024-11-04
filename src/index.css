@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.bottom-nav-items {
+  @apply inline-flex flex-col items-center justify-center px-3 gap-y-1 font-normal;
+}

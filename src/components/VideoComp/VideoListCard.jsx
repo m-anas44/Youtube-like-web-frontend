@@ -20,10 +20,10 @@ function VideoListCard({ video }) {
 
         {/* Video Details */}
         <div className="flex flex-col justify-between light-text-primary dark-text-primary flex-1">
-          <h3 className="text-base line-clamp-2">
-            {video.title}
-          </h3>
-          <p className="text-xs light-text-secondary dark-text-secondary">{video.owner.fullName}</p>
+          <h3 className="text-base line-clamp-2">{video.title}</h3>
+          <p className="text-xs light-text-secondary dark-text-secondary">
+            {video.owner.fullName}
+          </p>
           <div className="flex text-xs light-text-secondary dark-text-secondary space-x-1">
             <span>{video.views} views</span>
             <span>•</span>
