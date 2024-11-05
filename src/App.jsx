@@ -15,6 +15,7 @@ import WatchVideo from "./pages/video/WatchVideo";
 import WatchLayout from "./Parentlayout/WatchLayout";
 import Dashboard from "./pages/dashboard/Dashboard";
 import SearchResults from "./pages/video/SearchResults";
+import UserHistory from "./pages/UserHistory";
 
 function App() {
   const [themeMode, setThemeMode] = useState("light");
@@ -41,6 +42,7 @@ function App() {
         { path: "settings/video/:videoID", element: <VideoSettings /> },
         { path: "channel/:username", element: <UserChannelDetails /> },
         { path: "feed/library", element: <Library /> },
+        { path: "feed/history", element: <UserHistory /> },
         { path: "video/publishVideo", element: <PublishVideo /> },
         { path: "dashboard", element: <Dashboard /> },
         { path: "search", element: <SearchResults /> },

@@ -35,7 +35,7 @@ export const NavigationBar = () => {
       }
     };
     fetchSubscriptions();
-  }, []);
+  }, [currentUser]);
 
   const subscribedChannels = subscriptions.slice(0, 7);
   return (
@@ -94,7 +94,7 @@ export const NavigationBar = () => {
             />
             <li>
               <Link
-                to="/"
+                to="/feed/history"
                 className="flex items-center py-2 px-6 light-btn-hover dark-btn-hover font-normal-bold font-normal"
               >
                 <span className="text-xl flex-shrink-0">

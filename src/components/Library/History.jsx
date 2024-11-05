@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import VideoCard from "../VideoComp/VideoCard";
 import axiosInstance from "../../pages/auth/refreshAccessToken";
+import { Link } from "react-router-dom";
+import { MdOutlineKeyboardDoubleArrowRight } from "react-icons/md";
+
 function History() {
   const [videos, setVideos] = useState([]);
   useEffect(() => {
@@ -15,15 +18,26 @@ function History() {
 
     fetchWatchHistory();
   }, []);
+
+  const filteredHistory = videos.slice(0, 4);
   return (
-    <div className="mt-10">
-      <h2 className="font-semibold text-xl tracking-wide">History</h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 my-4">
-        {videos.map((video) => (
+    <section className="mt-10">
+      <div className="flex items-center justify-between">
+        <h2 className="font-normal-bold font-bold text-xl">History</h2>
+        <Link
+          to={"/feed/history"}
+          className="rounded-full px-3 py-1.5 text-sm font-normal-bold border light-border-primary dark-border-primary cursor-pointer bg-transparent flex items-center gap-x-1"
+        >
+          <span>Full History</span>
+          <MdOutlineKeyboardDoubleArrowRight />
+        </Link>
+      </div>
+      <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-1 my-4">
+        {filteredHistory.map((video) => (
           <VideoCard key={video._id} video={video} />
         ))}
       </div>
-    </div>
+    </section>
   );
 }
 

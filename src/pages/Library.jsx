@@ -17,7 +17,7 @@ function Library() {
     fetchCurrentUser();
   }, []);
   return (
-    <section className="p-8">
+    <section className="p-2 sm:p-4 md:p-8">
       <div className="flex gap-x-3 items-start">
         <img
           src={currentUserData.avatar}
