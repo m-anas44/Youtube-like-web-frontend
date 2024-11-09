@@ -93,7 +93,7 @@ export default function Settings() {
   };
 
   return (
-    <div className="p-5">
+    <div className="p-2 md:p-5">
       <Toaster position="top-center" reverseOrder={false} />
       <h2 className="text-2xl sm:text-3xl mb-3 font-bold leading-7">
         Settings
@@ -228,7 +228,7 @@ export default function Settings() {
               >
                 Avatar
               </label>
-              <div className="mt-2 flex items-center gap-x-3">
+              <div className="mt-2 flex items-center flex-wrap gap-3">
                 {avatarPreview ? (
                   <img
                     src={avatarPreview}

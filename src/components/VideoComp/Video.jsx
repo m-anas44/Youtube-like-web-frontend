@@ -151,7 +151,7 @@ function Video() {
               >
                 <BsThreeDots className="text-xl" />
               </button>
-              {showDropdown && <VideoDropdownMenu />}
+              {showDropdown && <VideoDropdownMenu videoId={videoID}/>}
             </div>
           </div>
         </div>

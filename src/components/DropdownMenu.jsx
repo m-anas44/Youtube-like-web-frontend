@@ -2,11 +2,16 @@ import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axiosInstance from "../pages/auth/refreshAccessToken";
 import useTheme from "../context/switcher";
+import { FiSun, FiMoon } from "react-icons/fi";
+import { LuLayoutDashboard, LuLibrary } from "react-icons/lu";
+import { IoSettingsOutline } from "react-icons/io5";
+import { MdOutlinePowerSettingsNew } from "react-icons/md";
+import { GrChannel } from "react-icons/gr";
 
 const DropdownMenu = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
-  const [changeTheme, setChangeTheme] = useState(true);
+  const [isChecked, setIsChecked] = useState(true); // Default to light mode
   const navigate = useNavigate();
   const { lightMode, darkMode } = useTheme();
 
@@ -40,8 +45,14 @@ const DropdownMenu = () => {
   };
 
   const toggleTheme = () => {
-    setChangeTheme(!changeTheme);
-    changeTheme ? darkMode() : lightMode();
+    setIsChecked((prev) => {
+      if (prev) {
+        darkMode();
+      } else {
+        lightMode();
+      }
+      return !prev;
+    });
   };
 
   if (!currentUser) {
@@ -74,10 +85,10 @@ const DropdownMenu = () => {
               className="w-10 h-10 rounded object-cover"
             />
             <div>
-              <div className="font-medium truncate light-text-secondary dark-text-secondary">
+              <div className="font-medium overflow-hidden light-text-secondary dark-text-secondary">
                 @{currentUser.username}
               </div>
-              <div className="capitalize tracking-tight truncate">
+              <div className="capitalize tracking-tight overflow-hidden">
                 {currentUser.fullName}
               </div>
             </div>
@@ -88,36 +99,89 @@ const DropdownMenu = () => {
           >
             <li>
               <Link
-                to="/feed/library"
-                className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-[#222222] dark:hover:text-white"
+                to={`/channel/${currentUser.username}`}
+                className="flex items-center py-2 px-3 light-btn-hover dark-btn-hover"
               >
-                Library
+                <span className="text-lg flex-shrink-0">
+                  <GrChannel />
+                </span>
+                <span className="ms-2 text-sm">View Channel</span>
+              </Link>
+            </li>
+            <li></li>
+            <li>
+              <Link
+                to="/dashboard"
+                className="flex items-center py-2 px-3 light-btn-hover dark-btn-hover"
+              >
+                <span className="text-lg flex-shrink-0">
+                  <LuLayoutDashboard />
+                </span>
+                <span className="ms-2 text-sm">Dashboard</span>
               </Link>
             </li>
             <li>
               <Link
-                to="/settings/user"
-                className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-[#222222] dark:hover:text-white"
+                to="/feed/library"
+                className="flex items-center py-2 px-3 light-btn-hover dark-btn-hover"
               >
-                Settings
+                <span className="text-lg flex-shrink-0">
+                  <LuLibrary />
+                </span>
+                <span className="ms-2 text-sm">Library</span>
               </Link>
             </li>
           </ul>
-          <div className="py-2 block px-4 text-sm light-text-primary dark-text-primary font-normal-bold font-normal">
+          <div className="py-2 flex justify-between items-center px-4 text-sm light-text-primary dark-text-primary font-normal-bold font-normal">
             Appearance
-            <button
-              onClick={toggleTheme}
-              className="ml-2 text-sm"
-            >
-              {changeTheme ? "Dark Mode" : "Light Mode"}
-            </button>
+            <label className="relative inline-flex cursor-pointer select-none items-center">
+              <input
+                type="checkbox"
+                checked={isChecked}
+                onChange={toggleTheme} // Toggling theme on change
+                className="sr-only"
+              />
+              <div className="shadow-md flex h-[38px] w-[68px] items-center justify-center rounded-md bg-white dark:bg-[#222222]">
+                <span
+                  className={`flex h-7 w-7 items-center justify-center rounded ${
+                    isChecked
+                      ? "light-btn dark-btn bg-white dark:bg-[#222222]"
+                      : ""
+                  }`}
+                >
+                  <FiSun />
+                </span>
+                <span
+                  className={`flex h-7 w-7 items-center justify-center rounded ${
+                    !isChecked
+                      ? "light-btn dark-btn"
+                      : "bg-white dark:bg-[#222222]"
+                  }`}
+                >
+                  <FiMoon />
+                </span>
+              </div>
+            </label>
           </div>
-          <div className="py-2">
+
+          <div className="py-2 font-normal-bold font-normal">
+            <Link
+              to="/settings/user"
+              className="flex items-center py-2 px-3 light-btn-hover dark-btn-hover"
+            >
+              <span className="text-lg flex-shrink-0">
+                <IoSettingsOutline />
+              </span>
+              <span className="ms-2 text-sm">Settings</span>
+            </Link>
             <button
               onClick={() => logoutUser()}
-              className="block w-full text-left px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-[#222222] light-text-primary dark-text-primary font-normal-bold font-normal"
+              className="flex items-center py-2 px-3 light-btn-hover dark-btn-hover w-full"
             >
-              Sign out
+              <span className="text-lg flex-shrink-0">
+                <MdOutlinePowerSettingsNew />
+              </span>
+              <span className="ms-2 text-sm">Logout</span>
             </button>
           </div>
         </div>

@@ -5,6 +5,7 @@ import { IoHomeOutline, IoSettingsOutline, IoAdd } from "react-icons/io5";
 import { MdOutlinePlaylistPlay, MdOutlineHistory } from "react-icons/md";
 import { BiLike } from "react-icons/bi";
 import { LiaRetweetSolid } from "react-icons/lia";
+import { RiUserFollowLine } from "react-icons/ri";
 import axiosInstance from "../../pages/auth/refreshAccessToken";
 
 export const NavigationBar = () => {
@@ -21,7 +22,7 @@ export const NavigationBar = () => {
       }
     };
     getCurrentUser();
-  }, []);
+  }, [setCurrentUser]);
 
   useEffect(() => {
     const fetchSubscriptions = async () => {
@@ -44,7 +45,7 @@ export const NavigationBar = () => {
       <aside
         className={`${
           isOpen ? "w-48" : "w-16"
-        } fixed left-0 top-0 h-full bg-transparent hidden md:block`}
+        } fixed left-0 top-0 h-full bg-transparent hidden md:block custom-scrollbar`}
         aria-label="Sidebar"
       >
         <div
@@ -111,7 +112,7 @@ export const NavigationBar = () => {
             </li>
             <li>
               <Link
-                to="/"
+                to="/feed/playlists"
                 className="flex items-center py-2 px-6 light-btn-hover dark-btn-hover font-normal-bold font-normal"
               >
                 <span className="text-xl flex-shrink-0">
@@ -128,7 +129,7 @@ export const NavigationBar = () => {
             </li>
             <li>
               <Link
-                to="/"
+                to="/feed/likedVideos"
                 className="flex items-center py-2 px-6 light-btn-hover dark-btn-hover font-normal-bold font-normal"
               >
                 <span className="text-xl flex-shrink-0">
@@ -163,12 +164,23 @@ export const NavigationBar = () => {
                     alt={channel.channel.username}
                     className="w-6 h-6 object-cover rounded-full"
                   />
-                  <span className="font-normal capitalize text-sm">
+                  <span className="font-normal capitalize text-xs">
                     {channel.channel.fullName}
                   </span>
                 </Link>
               );
             })}
+            <Link
+              to="/feed/channels"
+              className="flex items-center py-2 px-6 light-btn-hover dark-btn-hover font-normal-bold"
+            >
+              <span className="text-xl flex-shrink-0">
+                <RiUserFollowLine />
+              </span>
+              <span className={`ms-3 text-sm transition-opacity duration-200`}>
+                All Subscriptions
+              </span>
+            </Link>
           </section>
           <hr
             className={`light-border-primary dark-border-primary ${
@@ -197,46 +209,50 @@ export const NavigationBar = () => {
 
       {/* Bottom navigation bar for screens smaller than md */}
       <div className="fixed z-50 h-16 w-full px-0.5 sm:px-4 bg-white border-t light-border-primary dark-border-primary bottom-0 left-1/2 transform -translate-x-1/2 dark:bg-[#0f0f0f] md:hidden mx-auto">
-  <div className="grid h-full max-w-lg grid-cols-5 mx-auto">
-    <button type="button" className="bottom-nav-items font-normal-bold">
-      <span className="text-xl sm:text-2xl">
-        <IoHomeOutline />
-      </span>
-      <span className="text-[10px] sm:text-sm">Home</span>
-    </button>
-    <button type="button" className="bottom-nav-items font-normal-bold">
-      <span className="text-xl sm:text-2xl">
-        <IoHomeOutline />
-      </span>
-      <span className="text-[10px] sm:text-sm">Subscriptions</span>
-    </button>
-    
-    {/* Centered Create Button */}
-    <div className="flex items-center justify-center">
-      <button
-        data-tooltip-target="tooltip-new"
-        type="button"
-        className="inline-flex items-center justify-center w-10 h-10  bg-[#1e88e5] rounded-full hover:bg-[#1976d2] group focus:ring-4 focus:ring-[#64b5f6] focus:outline-none dark:focus:ring-[#1565c0]"
-      >
-        <IoAdd className="text-2xl text-white"/>
-      </button>
-    </div>
-    
-    <button type="button" className="bottom-nav-items font-normal-bold">
-      <span className="text-xl sm:text-2xl">
-        <IoHomeOutline />
-      </span>
-      <span className="text-[10px] sm:text-sm">Tweets</span>
-    </button>
-    <button type="button" className="bottom-nav-items font-normal-bold">
-      <span className="text-xl sm:text-2xl">
-        <IoHomeOutline />
-      </span>
-      <span className="text-[10px] sm:text-sm">Me</span>
-    </button>
-  </div>
-</div>
+        <div className="grid h-full max-w-lg grid-cols-5 mx-auto">
+          <button type="button" className="bottom-nav-items font-normal-bold">
+            <span className="text-xl sm:text-2xl">
+              <IoHomeOutline />
+            </span>
+            <span className="text-[10px] sm:text-sm">Home</span>
+          </button>
+          <button type="button" className="bottom-nav-items font-normal-bold">
+            <span className="text-xl sm:text-2xl">
+              <LiaRetweetSolid />
+            </span>
+            <span className="text-[10px] sm:text-sm">Tweet</span>
+          </button>
 
+          {/* Centered Create Button */}
+          <div className="flex items-center justify-center">
+            <button
+              data-tooltip-target="tooltip-new"
+              type="button"
+              className="inline-flex items-center justify-center w-10 h-10  bg-[#1e88e5] rounded-full hover:bg-[#1976d2] group focus:ring-4 focus:ring-[#64b5f6] focus:outline-none dark:focus:ring-[#1565c0]"
+            >
+              <IoAdd className="text-2xl text-white" />
+            </button>
+          </div>
+
+          <button type="button" className="bottom-nav-items font-normal-bold">
+            <span className="text-xl sm:text-2xl">
+              <RiUserFollowLine />
+            </span>
+            <span className="text-[10px] sm:text-sm">Subscriptions</span>
+          </button>
+          <Link
+            to={"/feed/library"}
+            className="bottom-nav-items font-normal-bold"
+          >
+            <img
+              src={currentUser?.avatar}
+              alt={currentUser?.username}
+              className="w-5 h-5 sm:w-6 sm:h-6 rounded-full object-fill border border-black dark:border-white p-[1px]"
+            />
+            <span className="text-[10px] sm:text-sm">Me</span>
+          </Link>
+        </div>
+      </div>
     </>
   );
 };

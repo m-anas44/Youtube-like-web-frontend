@@ -1,5 +1,5 @@
 .light .light-bg-secondary {
-  background-color: #fafbfc ;
+  background-color: #fafbfc;
 }
 
 .light .light-bg-dark {
@@ -62,7 +62,8 @@
 
 .font-normal-bold {
   font-weight: 500;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
 .video-placeholder {
@@ -107,10 +108,58 @@
   height: 12px;
 }
 
+.custom-scrollbar {
+  overflow-y: auto; /* Enable vertical scrolling */
+}
 
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
 
-/* Styles for Firefox */
-aside {
-  scrollbar-width: 3px; /* Reduced to make it thinner */
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 10px;
+  border: 2px solid transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
+
+/* Firefox */
+.custom-scrollbar {
+  scrollbar-width: thin;
   scrollbar-color: #888 transparent;
+}
+
+/* Light Theme */
+.light {
+  --tooltip-bg-color: #fafbfc; /* Light background for tooltips */
+  --tooltip-text-color: #0f0f0f; /* Light text color for tooltips */
+
+  --xaxis-color: #333; /* Light color for X-axis title */
+  --xaxis-bg-color: #ffffff; /* Background color for X-axis */
+  --xaxis-labels-color: #666; /* Light color for X-axis labels */
+
+  --yaxis-color: #333; /* Light color for Y-axis title */
+  --yaxis-bg-color: #ffffff; /* Background color for Y-axis */
+  --yaxis-labels-color: #666; /* Light color for Y-axis labels */
+}
+
+/* Dark Theme */
+.dark {
+  --tooltip-bg-color: #1a1a1a; /* Dark background for tooltips */
+  --tooltip-text-color: #f1f1f1; /* Dark text color for tooltips */
+
+  --xaxis-color: #ccc; /* Dark color for X-axis title */
+  --xaxis-bg-color: #222222; /* Background color for X-axis */
+  --xaxis-labels-color: #aaa; /* Dark color for X-axis labels */
+
+  --yaxis-color: #ccc; /* Dark color for Y-axis title */
+  --yaxis-bg-color: #222222; /* Background color for Y-axis */
+  --yaxis-labels-color: #aaa; /* Dark color for Y-axis labels */
 }

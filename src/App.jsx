@@ -16,6 +16,11 @@ import WatchLayout from "./Parentlayout/WatchLayout";
 import Dashboard from "./pages/dashboard/Dashboard";
 import SearchResults from "./pages/video/SearchResults";
 import UserHistory from "./pages/UserHistory";
+import AllSubsriptions from "./pages/AllSubsriptions";
+import UserPlaylists from "./pages/UserPlaylists";
+import GetPlaylist from "./pages/GetPlaylist";
+import Stats from "./pages/dashboard/Stats";
+import LikedVideos from "./pages/LikedVideos";
 
 function App() {
   const [themeMode, setThemeMode] = useState("light");
@@ -43,8 +48,13 @@ function App() {
         { path: "channel/:username", element: <UserChannelDetails /> },
         { path: "feed/library", element: <Library /> },
         { path: "feed/history", element: <UserHistory /> },
+        { path: "feed/channels", element: <AllSubsriptions /> },
+        { path: "feed/playlists", element: <UserPlaylists /> },
+        { path: "feed/likedVideos", element: <LikedVideos /> },
+        { path: "feed/playlists/:playlistId", element: <GetPlaylist /> },
         { path: "video/publishVideo", element: <PublishVideo /> },
         { path: "dashboard", element: <Dashboard /> },
+        { path: "dashboard/stats", element: <Stats /> },
         { path: "search", element: <SearchResults /> },
       ],
     },

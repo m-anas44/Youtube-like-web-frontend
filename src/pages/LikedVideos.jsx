@@ -11,14 +11,14 @@ const SkeletonCard = () => (
   </div>
 );
 
-function UserHistory() {
+function LikedVideos() {
   const [videos, setVideos] = useState([]);
   const [loading, setLoading] = useState(true); // Loading state
 
   useEffect(() => {
-    const fetchWatchHistory = async () => {
+    const fetchLikedVideos = async () => {
       try {
-        const response = await axiosInstance.get("/users/history");
+        const response = await axiosInstance.get("/like/likedVideos");
         setVideos(response.data.data);
       } catch (error) {
         console.log("Error in fetching watch history", error);
@@ -27,12 +27,14 @@ function UserHistory() {
       }
     };
 
-    fetchWatchHistory();
+    fetchLikedVideos();
   }, []);
 
   return (
     <section className="p-2 sm:p-4 md:p-8 md:mb-0 mb-16">
-      <h2 className="font-normal-bold font-bold text-lg md:text-xl mb-4">History</h2>
+      <h2 className="font-normal-bold font-bold text-lg md:text-xl mb-4">
+        Liked Videos
+      </h2>
 
       {loading ? (
         // Skeleton for Grid Layout
@@ -67,4 +69,4 @@ function UserHistory() {
   );
 }
 
-export default UserHistory;
+export default LikedVideos;
