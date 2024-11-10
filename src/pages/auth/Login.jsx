@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axiosInstance from "./refreshAccessToken";
-import axios from "axios";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -35,7 +34,7 @@ const Login = () => {
     };
 
     try {
-      const response = await axios.post("https://pro-backend-production-2d96.up.railway.app/api/v1/users/login", data, {
+      const response = await axiosInstance.post("/users/login", data, {
         headers: {
           "Content-Type": "application/json",
         },
