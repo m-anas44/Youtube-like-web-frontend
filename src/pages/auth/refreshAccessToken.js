@@ -1,7 +1,7 @@
-import axios from "axios"
+import axios from "axios";
 
 const axiosInstance = axios.create({
-  baseURL: "/api/v1",
+  baseURL: import.meta.env.VITE_API_BASE_URL || "/api/v1",
   withCredentials: true,
 });
 
@@ -9,7 +9,11 @@ axiosInstance.interceptors.response.use(
   (response) => response,
   async (error) => {
     const originalRequest = error.config;
-    if (error.response && error.response.status === 401 && !originalRequest._retry) {
+    if (
+      error.response &&
+      error.response.status === 401 &&
+      !originalRequest._retry
+    ) {
       originalRequest._retry = true;
       try {
         const response = await axios.post("/api/v1/users/refreshToken", null, {
@@ -31,4 +35,4 @@ axiosInstance.interceptors.response.use(
   }
 );
 
-export default axiosInstance
+export default axiosInstance;
