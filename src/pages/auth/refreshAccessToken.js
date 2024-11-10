@@ -16,22 +16,28 @@ axiosInstance.interceptors.response.use(
     ) {
       originalRequest._retry = true;
       try {
-        const response = await axios.post(
-          "https://pro-backend-production-2d96.up.railway.app/api/v1/users/refreshToken",
-          null,
-          {
-            withCredentials: true,
-          }
-        );
-        const { accessToken } = response.data.data;
-        localStorage.setItem("accessToken", accessToken);
-        originalRequest.headers["Authorization"] = `Bearer ${accessToken}`;
-        return axiosInstance(originalRequest);
+        // Use the same axiosInstance for consistency
+        const response = await axiosInstance.post('/users/refreshToken', null, {
+          withCredentials: true,
+        });
+
+        if (response.data && response.data.data && response.data.data.accessToken) {
+          const { accessToken } = response.data.data;
+          localStorage.setItem("accessToken", accessToken);
+          originalRequest.headers["Authorization"] = `Bearer ${accessToken}`;
+
+          // Log the new token for debugging
+          console.log("New Access Token:", accessToken);
+
+          return axiosInstance(originalRequest);
+        } else {
+          throw new Error("Failed to retrieve access token from refresh response.");
+        }
       } catch (refreshError) {
         console.log("Token refresh failed:", refreshError);
-        // Clear any stored tokens and redirect to login
+        // Clear the stored token and redirect to login
         localStorage.removeItem("accessToken");
-        // Optionally, trigger logout logic or redirect here
+        window.location.href = "/login"; // Redirect to login page
         return Promise.reject(refreshError);
       }
     }
