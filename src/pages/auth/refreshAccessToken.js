@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosInstance = axios.create({
-   baseURL: `${import.meta.env.VITE_API_BASE_URL || ""}/api/v1`,
+  baseURL: `${import.meta.env.VITE_API_BASE_URL || ""}/api/v1`,
   withCredentials: true,
 });
 
@@ -16,9 +16,13 @@ axiosInstance.interceptors.response.use(
     ) {
       originalRequest._retry = true;
       try {
-        const response = await axiosInstance.post("/users/refreshToken", null, {
-          withCredentials: true,
-        });
+        const response = await axios.post(
+          "https://pro-backend-production-2d96.up.railway.app/api/v1/users/refreshToken",
+          null,
+          {
+            withCredentials: true,
+          }
+        );
         const { accessToken } = response.data.data;
         localStorage.setItem("accessToken", accessToken);
         originalRequest.headers["Authorization"] = `Bearer ${accessToken}`;
