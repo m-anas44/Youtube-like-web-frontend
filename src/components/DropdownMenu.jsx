@@ -11,12 +11,27 @@ import { GrChannel } from "react-icons/gr";
 const DropdownMenu = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
-  const [isChecked, setIsChecked] = useState(true); // Default to light mode
+  const savedTheme = localStorage.getItem("themeMode");
+  const [isChecked, setIsChecked] = useState(savedTheme === "dark");
   const navigate = useNavigate();
   const { lightMode, darkMode } = useTheme();
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
+  };
+
+  useEffect(() => {
+    if (isChecked) {
+      darkMode();
+      localStorage.setItem("themeMode", "dark");
+    } else {
+      lightMode();
+      localStorage.setItem("themeMode", "light");
+    }
+  }, [isChecked, lightMode, darkMode]);
+
+  const handleCheckboxChange = () => {
+    setIsChecked((prevState) => !prevState);
   };
 
   useEffect(() => {
@@ -42,17 +57,6 @@ const DropdownMenu = () => {
     } catch (error) {
       console.log("Error in logging out user", error);
     }
-  };
-
-  const toggleTheme = () => {
-    setIsChecked((prev) => {
-      if (prev) {
-        darkMode();
-      } else {
-        lightMode();
-      }
-      return !prev;
-    });
   };
 
   if (!currentUser) {
@@ -138,13 +142,13 @@ const DropdownMenu = () => {
               <input
                 type="checkbox"
                 checked={isChecked}
-                onChange={toggleTheme} // Toggling theme on change
+                onChange={handleCheckboxChange} // Toggling theme on change
                 className="sr-only"
               />
               <div className="shadow-md flex h-[38px] w-[68px] items-center justify-center rounded-md bg-white dark:bg-[#222222]">
                 <span
                   className={`flex h-7 w-7 items-center justify-center rounded ${
-                    isChecked
+                    !isChecked
                       ? "light-btn dark-btn bg-white dark:bg-[#222222]"
                       : ""
                   }`}
@@ -153,7 +157,7 @@ const DropdownMenu = () => {
                 </span>
                 <span
                   className={`flex h-7 w-7 items-center justify-center rounded ${
-                    !isChecked
+                    isChecked
                       ? "light-btn dark-btn"
                       : "bg-white dark:bg-[#222222]"
                   }`}

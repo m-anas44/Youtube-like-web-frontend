@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { LuLayoutDashboard } from "react-icons/lu";
 import {
@@ -13,16 +13,24 @@ import useTheme from "../../context/switcher";
 import axiosInstance from "../../pages/auth/refreshAccessToken";
 
 function MobileLibrary() {
-  const [isChecked, setIsChecked] = useState(false);
-  const { lightMode, darkMode } = useTheme(); // Get the lightMode and darkMode functions
+  const savedTheme = localStorage.getItem("themeMode");
+  const [isChecked, setIsChecked] = useState(savedTheme === "dark");
+
+  const { lightMode, darkMode } = useTheme(); 
   const navigate = useNavigate();
-  
+
+  useEffect(() => {
+    if (isChecked) {
+      darkMode();
+      localStorage.setItem("themeMode", "dark");
+    } else {
+      lightMode();
+      localStorage.setItem("themeMode", "light");
+    }
+  }, [isChecked, lightMode, darkMode]);
+
   const handleCheckboxChange = () => {
-    setIsChecked((prevState) => {
-      const newState = !prevState;
-      newState ? darkMode() : lightMode(); // Toggle the theme when checkbox changes
-      return newState;
-    });
+    setIsChecked((prevState) => !prevState);
   };
 
   const logoutUser = async () => {

@@ -59,8 +59,8 @@ const SearchResults = () => {
   ];
 
   const orderOptions = [
-    { value: "desc", label: "Desc" },
-    { value: "asc", label: "Asc" },
+    { value: "desc", label: "Descending" },
+    { value: "asc", label: "Ascending" },
   ];
 
   useEffect(() => {

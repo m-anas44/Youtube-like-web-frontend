@@ -107,6 +107,7 @@ function VideoComments({ videoID }) {
           comment._id === commentId ? response.data.data : comment
         ),
       }));
+      fetchComments(page);
       setEditingCommentId(null);
       setUpdatedContent("");
     } catch (error) {
@@ -145,7 +146,7 @@ function VideoComments({ videoID }) {
           disabled={loading}
           className="flex gap-x-2 items-center mt-2 py-2 px-4 rounded-md text-white bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400"
         >
-          <GrSend/>
+          <GrSend />
           <span>Post</span>
         </button>
       </form>
@@ -220,12 +221,6 @@ function VideoComments({ videoID }) {
                 )}
               </div>
             )}
-            <div className="mt-2 light-text-secondary dark-text-secondary text-sm">
-              <button className="flex items-center space-x-1">
-                <IoHeartOutline className="text-xl" />
-                <span>{comment.likes}</span>
-              </button>
-            </div>
           </div>
         </div>
       ))}

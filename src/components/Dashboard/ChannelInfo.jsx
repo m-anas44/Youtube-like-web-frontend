@@ -58,8 +58,12 @@ function ChannelInfo() {
           <p className="light-text-secondary dark-text-secondary">
             {currentChannel.email}
           </p>
+          <Link to={"/feed/subscribers"}>
           <span className="light-text-secondary dark-text-secondary mr-3 font-normal text-sm">{channelStats.channelSubscribers} subscribers</span>
+          </Link>
+          <Link to={"/feed/channels"}>
           <span className="light-text-secondary dark-text-secondary font-normal text-sm">{channelStats.channelSubscribing} subscribing</span>
+          </Link>
         </div>
         <Link
           to={"/dashboard/stats"}

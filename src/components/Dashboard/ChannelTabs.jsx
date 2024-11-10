@@ -46,9 +46,7 @@ function ChannelTabs({ channelId }) {
       {/* Tab Content */}
       <div className="p-3 md:p-4 lg:p-6 light-bg-secondary dark-bg-secondary">
         {activeTab === "videos" && <ChannelVideoTab channelId={channelId} />}
-        {activeTab === "playlists" && (
-          <ChannelPlaylistTab/>
-        )}
+        {activeTab === "playlists" && <ChannelPlaylistTab />}
       </div>
     </div>
   );

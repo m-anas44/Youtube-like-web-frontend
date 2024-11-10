@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import axiosInstance from "./auth/refreshAccessToken";
 import VideoCard from "../components/VideoComp/VideoCard";
 
@@ -9,6 +9,12 @@ const UserChannelDetails = () => {
   const [currentUser, setCurrentUser] = useState({});
   const [isSubscribed, setIsSubscribed] = useState(false);
   const [channelVideos, setChannelVideos] = useState([]);
+  const [messages, setMessages] = useState([]);
+  const [activeTab, setActiveTab] = useState("videos");
+  const handleTabChange = (tab) => {
+    setActiveTab(tab);
+  };
+
   useEffect(() => {
     const fetchUser = async () => {
       try {
@@ -26,7 +32,6 @@ const UserChannelDetails = () => {
       try {
         const response = await axiosInstance.get(`/users/channel/${username}`);
         setChannelUser(response.data.data);
-        console.log(response.data.data);
         setIsSubscribed(response.data.data.isSubscribed);
       } catch (error) {
         console.error("Error in fetching channel", error);
@@ -47,7 +52,7 @@ const UserChannelDetails = () => {
       }
     };
     fetchChannelVideos();
-  }, []);
+  }, [channelUser]);
 
   const handleSubscription = async () => {
     try {
@@ -55,11 +60,30 @@ const UserChannelDetails = () => {
         `/subscription/channel/${channelUser._id}`
       );
       setIsSubscribed(!isSubscribed);
-      console.log(response.data.message);
     } catch (error) {
       console.error("Error toggling subscription", error);
     }
   };
+
+  useEffect(() => {
+    const fetchTweets = async () => {
+      try {
+        const response = await axiosInstance.get(
+          `/tweet/user/${channelUser._id}`
+        );
+        setMessages(response.data.data);
+        console.log(response.data.data);
+      } catch (error) {
+        console.error(
+          "Failed to fetch user tweets:",
+          error.response?.message || error.message
+        );
+      }
+    };
+    if (currentUser) {
+      fetchTweets();
+    }
+  }, [currentUser]);
   return (
     <div className="bg-transparent light-text-primary dark-text-primary px-2 md:mx-10 my-6 mb-16 md:mb-0">
       <div>
@@ -84,9 +108,11 @@ const UserChannelDetails = () => {
                 <span className="text-sm light-text-secondary dark-text-secondary font-normal-bold">
                   @{channelUser.username}
                 </span>
-                <span className="text-sm light-text-secondary dark-text-secondary font-normal-bold">
-                  • {channelUser.subscribersCount} subscribers
-                </span>
+                <Link to={"/feed/subscribers"}>
+                  <span className="text-sm light-text-secondary dark-text-secondary font-normal-bold">
+                    • {channelUser.subscribersCount} subscribers
+                  </span>
+                </Link>
               </div>
             </div>
             {channelUser.username !== currentUser.username && (
@@ -102,16 +128,82 @@ const UserChannelDetails = () => {
           </div>
         </div>
       </div>
-      <section className="font-normal-bold mt-4">
-        <h4 className="text-2xl border-b light-border-primary dark-border-primary py-2">
-          Videos
-        </h4>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 mt-4">
-          {channelVideos.map((video) => {
-            return <VideoCard video={video} />;
-          })}
+
+      <div>
+        <div className="border-b light-border-primary dark-border-primary px-4">
+          <ul
+            className="flex space-x-4 text-sm font-medium light-text-secondary dark-text-secondary tracking-wide"
+            role="tablist"
+          >
+            <li>
+              <button
+                onClick={() => handleTabChange("videos")}
+                className={`py-2 px-4 rounded-t-lg ${
+                  activeTab === "videos"
+                    ? "text-red-600 border-b-2 border-red-600 dark:text-red-500"
+                    : "hover:text-gray-700 dark:hover:text-gray-300"
+                }`}
+                role="tab"
+              >
+                Videos
+              </button>
+            </li>
+            <li>
+              <button
+                onClick={() => handleTabChange("tweets")}
+                className={`py-2 px-4 rounded-t-lg ${
+                  activeTab === "tweets"
+                    ? "text-red-600 border-b-2 border-red-600 dark:text-red-500"
+                    : "hover:text-gray-700 dark:hover:text-gray-300"
+                }`}
+                role="tab"
+              >
+                Tweets
+              </button>
+            </li>
+          </ul>
         </div>
-      </section>
+
+        {/* Tab Content */}
+        <div className="p-3 md:p-4 lg:p-6 light-bg-secondary dark-bg-secondary">
+          {activeTab === "videos" && (
+            <section className="font-normal-bold mt-4">
+              <h4 className="text-2xl border-b light-border-primary dark-border-primary py-2">
+                Videos
+              </h4>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 mt-4">
+                {channelVideos.map((video) => {
+                  return <VideoCard video={video} key={video._id} />;
+                })}
+              </div>
+            </section>
+          )}
+          {activeTab === "tweets" && (
+            <section>
+              {messages.map((message) => {
+                return (
+                  <div
+                    key={message._id}
+                    className="flex gap-x-3 p-1 font-normal-bold"
+                  >
+                    <img
+                      src={message.tweetBy.avatar}
+                      alt="user"
+                      className="w-7 h-7 rounded-full"
+                    />
+                    <div className="dark:bg-[#292929] bg-white px-3 py-1 rounded-lg">
+                      <p>{message.content}</p>
+                      <span className="text-xs float-right font-normal light-text-secondary dark-text-secondary">
+                        {new Date(message.createdAt).toLocaleTimeString()}
+                      </span>
+                    </div>
+                  </div>
+                );
+              })}
+            </section>
+          )}
+        </div>
+      </div>
     </div>
   );
 };

@@ -35,7 +35,7 @@ function Library() {
           <h2 className="text-xl md:text-2xl uppercase tracking-tight">
             {currentUserData.fullName}
           </h2>
-          <Link className="rounded-full mt-1 px-2 py-1 text-xs border light-border-primary dark-border-primary cursor-pointer bg-transparent inline-flex items-center gap-x-1">
+          <Link to={`/channel/${currentUserData.username}`} className="rounded-full mt-1 px-2 py-1 text-xs border light-border-primary dark-border-primary cursor-pointer bg-transparent inline-flex items-center gap-x-1">
             <span>View Channel</span>
             <MdOutlineKeyboardDoubleArrowRight />
           </Link>

@@ -5,12 +5,13 @@ import { MdMenu } from "react-icons/md";
 import useSidebarToggle from "../../context/sideBarToggle";
 import DropdownMenu from "../DropdownMenu";
 import { Link, useNavigate } from "react-router-dom";
+import { GrYoutube } from "react-icons/gr";
 
 const Header = () => {
   const [isSearchActive, setIsSearchActive] = useState(false);
   const [menuToggle, setMenuToggle] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
-  const searchInputRef = useRef(null);
+  // const searchInputRef = useRef(null);
   const navigate = useNavigate();
 
   const toggleSearch = () => {
@@ -35,11 +36,21 @@ const Header = () => {
       {!isSearchActive && (
         <>
           {/* Left: Logo and Menu Button */}
-          <div className="flex items-center space-x-4 dark-text-primary">
-            <button type="button" onClick={() => toggleMenu()}>
-              <MdMenu className="text-3xl cursor-pointer" />
+          <div className="flex items-center md:space-x-3 dark-text-primary">
+            <button
+              type="button"
+              onClick={() => toggleMenu()}
+              className="hidden md:block"
+            >
+              <MdMenu className="text-2xl cursor-pointer " />
             </button>
-            <div className="text-xl font-bold">YouTube</div>
+            <Link
+              to="/"
+              className="text-xl flex items-center gap-x-2 font-normal-bold font-bold dark-text-primary"
+            >
+              <GrYoutube className="text-4xl text-red-500"/>
+              <span >YouTube</span>
+            </Link>
           </div>
 
           {/* Center: Search Bar for Larger Screens */}
@@ -52,7 +63,10 @@ const Header = () => {
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="w-full bg-transparent light-text-primary dark-text-primary p-1.5 pl-4 pr-12 rounded-full focus:outline-none border border-gray-700 placeholder:text-gray-700"
               />
-              <button type="submit" className="absolute right-2 top-2 px-1 light-text-primary dark-text-primary">
+              <button
+                type="submit"
+                className="absolute right-2 top-1.5 px-1 light-text-primary dark-text-primary"
+              >
                 <IoSearch className="text-2xl" />
               </button>
             </form>
@@ -61,7 +75,10 @@ const Header = () => {
           {/* Right: Icons and Buttons */}
           <div className="flex items-center sm:gap-x-3 bg-transparent">
             {/* Mobile Search Icon */}
-            <button className="sm:hidden light-text-primary dark-text-primary p-2" onClick={toggleSearch}>
+            <button
+              className="sm:hidden light-text-primary dark-text-primary p-2"
+              onClick={toggleSearch}
+            >
               <IoSearch className="text-2xl" />
             </button>
             <Link
@@ -81,7 +98,10 @@ const Header = () => {
       {/* Mobile Search Bar Mode */}
       {isSearchActive && (
         <div className="w-full flex items-center justify-between">
-          <button className="light-text-primary dark-text-primary p-2" onClick={() => setIsSearchActive(false)}>
+          <button
+            className="light-text-primary dark-text-primary p-2"
+            onClick={() => setIsSearchActive(false)}
+          >
             <IoArrowBack className="text-2xl" />
           </button>
           <div className="flex-grow mx-auto">
@@ -93,7 +113,10 @@ const Header = () => {
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="w-full bg-transparent light-text-primary dark-text-primary p-2 pl-4 pr-12 rounded-full focus:outline-none border border-[#424242] placeholder:text-gray-900"
               />
-              <button type="submit" className="absolute right-2 top-2 px-1 light-text-primary dark-text-primary">
+              <button
+                type="submit"
+                className="absolute right-2 top-2 px-1 light-text-primary dark-text-primary"
+              >
                 <IoSearch className="text-2xl" />
               </button>
             </form>

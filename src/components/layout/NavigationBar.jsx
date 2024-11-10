@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 import useSidebarToggle from "../../context/sideBarToggle";
 import { Link } from "react-router-dom";
 import { IoHomeOutline, IoSettingsOutline, IoAdd } from "react-icons/io5";
-import { MdOutlinePlaylistPlay, MdOutlineHistory } from "react-icons/md";
+import { MdOutlinePlaylistPlay, MdOutlineHistory, MdOutlineSubscriptions } from "react-icons/md";
 import { BiLike } from "react-icons/bi";
 import { LiaRetweetSolid } from "react-icons/lia";
-import { RiUserFollowLine } from "react-icons/ri";
 import axiosInstance from "../../pages/auth/refreshAccessToken";
+import Subscribers from "../Subscribers";
 
 export const NavigationBar = () => {
   const { isOpen } = useSidebarToggle();
@@ -73,7 +73,7 @@ export const NavigationBar = () => {
             </li>
             <li>
               <Link
-                to="/"
+                to="/feed/tweets"
                 className="flex items-center light-btn-hover dark-btn-hover py-2 px-6 font-normal-bold font-normal"
               >
                 <span className="text-xl flex-shrink-0">
@@ -175,12 +175,13 @@ export const NavigationBar = () => {
               className="flex items-center py-2 px-6 light-btn-hover dark-btn-hover font-normal-bold"
             >
               <span className="text-xl flex-shrink-0">
-                <RiUserFollowLine />
+                <MdOutlineSubscriptions  />
               </span>
               <span className={`ms-3 text-sm transition-opacity duration-200`}>
-                All Subscriptions
+                All Channels
               </span>
             </Link>
+            <Subscribers channelId={currentUser?._id} />
           </section>
           <hr
             className={`light-border-primary dark-border-primary ${
@@ -210,36 +211,36 @@ export const NavigationBar = () => {
       {/* Bottom navigation bar for screens smaller than md */}
       <div className="fixed z-50 h-16 w-full px-0.5 sm:px-4 bg-white border-t light-border-primary dark-border-primary bottom-0 left-1/2 transform -translate-x-1/2 dark:bg-[#0f0f0f] md:hidden mx-auto">
         <div className="grid h-full max-w-lg grid-cols-5 mx-auto">
-          <button type="button" className="bottom-nav-items font-normal-bold">
+          <Link to={"/"} className="bottom-nav-items font-normal-bold">
             <span className="text-xl sm:text-2xl">
               <IoHomeOutline />
             </span>
             <span className="text-[10px] sm:text-sm">Home</span>
-          </button>
-          <button type="button" className="bottom-nav-items font-normal-bold">
+          </Link>
+          <Link to={"/feed/tweets"} className="bottom-nav-items font-normal-bold">
             <span className="text-xl sm:text-2xl">
               <LiaRetweetSolid />
             </span>
             <span className="text-[10px] sm:text-sm">Tweet</span>
-          </button>
+          </Link>
 
           {/* Centered Create Button */}
           <div className="flex items-center justify-center">
-            <button
+            <Link
               data-tooltip-target="tooltip-new"
-              type="button"
+             to={"/video/publishVideo"}
               className="inline-flex items-center justify-center w-10 h-10  bg-[#1e88e5] rounded-full hover:bg-[#1976d2] group focus:ring-4 focus:ring-[#64b5f6] focus:outline-none dark:focus:ring-[#1565c0]"
             >
               <IoAdd className="text-2xl text-white" />
-            </button>
+            </Link>
           </div>
 
-          <button type="button" className="bottom-nav-items font-normal-bold">
+          <Link to={"/feed/channels"} className="bottom-nav-items font-normal-bold">
             <span className="text-xl sm:text-2xl">
-              <RiUserFollowLine />
+              <MdOutlineSubscriptions  />
             </span>
-            <span className="text-[10px] sm:text-sm">Subscriptions</span>
-          </button>
+            <span className="text-[10px] sm:text-sm">Channels</span>
+          </Link>
           <Link
             to={"/feed/library"}
             className="bottom-nav-items font-normal-bold"

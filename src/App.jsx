@@ -21,17 +21,26 @@ import UserPlaylists from "./pages/UserPlaylists";
 import GetPlaylist from "./pages/GetPlaylist";
 import Stats from "./pages/dashboard/Stats";
 import LikedVideos from "./pages/LikedVideos";
+import UserSubscribers from "./pages/UserSubscribers";
+import UserTweets from "./pages/UserTweets";
 
 function App() {
-  const [themeMode, setThemeMode] = useState("light");
+  // Get the initial theme from localStorage or default to "light"
+  const storedTheme = localStorage.getItem("themeMode") || "light";
+  const [themeMode, setThemeMode] = useState(storedTheme);
+
+  // Update the theme mode in localStorage and apply the theme to the HTML element
   const lightMode = () => {
     setThemeMode("light");
+    localStorage.setItem("themeMode", "light"); // Store theme in localStorage
   };
 
   const darkMode = () => {
     setThemeMode("dark");
+    localStorage.setItem("themeMode", "dark"); // Store theme in localStorage
   };
 
+  // Apply the theme mode to the HTML element on theme change
   useEffect(() => {
     document.querySelector("html").classList.remove("light", "dark");
     document.querySelector("html").classList.add(themeMode);
@@ -49,9 +58,11 @@ function App() {
         { path: "feed/library", element: <Library /> },
         { path: "feed/history", element: <UserHistory /> },
         { path: "feed/channels", element: <AllSubsriptions /> },
+        { path: "feed/subscribers", element: <UserSubscribers /> },
         { path: "feed/playlists", element: <UserPlaylists /> },
         { path: "feed/likedVideos", element: <LikedVideos /> },
         { path: "feed/playlists/:playlistId", element: <GetPlaylist /> },
+        { path: "feed/tweets", element: <UserTweets /> },
         { path: "video/publishVideo", element: <PublishVideo /> },
         { path: "dashboard", element: <Dashboard /> },
         { path: "dashboard/stats", element: <Stats /> },
