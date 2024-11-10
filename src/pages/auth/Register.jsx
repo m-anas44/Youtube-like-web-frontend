@@ -65,8 +65,6 @@ const Register = () => {
         }
       );
       navigate("/login");
-      // console.log(response.data);
-      // Redirect or show success message
     } catch (error) {
       console.error(
         "Registration error:",

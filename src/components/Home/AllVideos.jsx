@@ -67,7 +67,6 @@ const VideosSection = () => {
       // Check if there are more videos to load
       setHasNextPage(response.data.data.hasNextPage);
     } catch (error) {
-      console.error("Error fetching videos:", error);
     } finally {
       if (pageNumber === 1) {
         setLoading(false); // End loading for the first page
