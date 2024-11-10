@@ -27,7 +27,6 @@ function Video() {
         setIsSubscribed(response.data.data.isSubscribed);
         setIsLiked(response.data.data.isLiked);
         setLikesCount(response.data.data.likesCount);
-        console.log("Fetched video successfully", response.data.data);
       } catch (error) {
         console.log("Error in fetching the video", error);
       }
@@ -42,7 +41,6 @@ function Video() {
         `/subscription/channel/${video.owner._id}`
       );
       setIsSubscribed(!isSubscribed);
-      console.log(response.data.message);
     } catch (error) {
       console.error("Error toggling subscription", error);
     }
@@ -53,7 +51,6 @@ function Video() {
       const response = await axiosInstance.post(`/like/toggle/v/${videoID}`);
       setLikesCount(isLiked ? likesCount - 1 : likesCount + 1);
       setIsLiked(!isLiked);
-      console.log(response.data.message);
     } catch (error) {
       console.error("Error toggling like", error);
     }
@@ -151,7 +148,7 @@ function Video() {
               >
                 <BsThreeDots className="text-xl" />
               </button>
-              {showDropdown && <VideoDropdownMenu videoId={videoID}/>}
+              {showDropdown && <VideoDropdownMenu videoId={videoID} />}
             </div>
           </div>
         </div>

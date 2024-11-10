@@ -17,14 +17,19 @@ const VideosSection = () => {
   useEffect(() => {
     // Add scroll event listener for infinite scrolling
     const handleScroll = () => {
-      if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 500 && hasNextPage && !isLoadingMore) {
+      if (
+        window.innerHeight + window.scrollY >=
+          document.body.offsetHeight - 500 &&
+        hasNextPage &&
+        !isLoadingMore
+      ) {
         // Check if we are near the bottom of the page and if there are more videos to load
         setPage((prevPage) => prevPage + 1); // Increment page to load more videos
       }
     };
 
     window.addEventListener("scroll", handleScroll);
-    
+
     // Cleanup the event listener on component unmount
     return () => {
       window.removeEventListener("scroll", handleScroll);
@@ -44,7 +49,7 @@ const VideosSection = () => {
       } else {
         setIsLoadingMore(true); // Start loading for additional pages
       }
-      
+
       const response = await axiosInstance.get("/videos/getAllVideos", {
         params: { page: pageNumber, limit: 12 }, // Load 10 videos per request
       });

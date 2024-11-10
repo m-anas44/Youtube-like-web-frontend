@@ -4,7 +4,6 @@ import ChannelTabs from "./ChannelTabs";
 import { Link } from "react-router-dom";
 import { ImStatsBars } from "react-icons/im";
 
-
 function ChannelInfo() {
   const [currentChannel, setCurrentChannel] = useState({});
   const [channelStats, setChannelStats] = useState({});
@@ -28,7 +27,6 @@ function ChannelInfo() {
           `/dashboard/stats/${currentChannel._id}`
         );
         setChannelStats(response.data.data);
-        console.log(response.data.data);
       } catch (error) {
         console.log("Error in fetching channel stats", error);
       }
@@ -59,17 +57,21 @@ function ChannelInfo() {
             {currentChannel.email}
           </p>
           <Link to={"/feed/subscribers"}>
-          <span className="light-text-secondary dark-text-secondary mr-3 font-normal text-sm">{channelStats.channelSubscribers} subscribers</span>
+            <span className="light-text-secondary dark-text-secondary mr-3 font-normal text-sm">
+              {channelStats.channelSubscribers} subscribers
+            </span>
           </Link>
           <Link to={"/feed/channels"}>
-          <span className="light-text-secondary dark-text-secondary font-normal text-sm">{channelStats.channelSubscribing} subscribing</span>
+            <span className="light-text-secondary dark-text-secondary font-normal text-sm">
+              {channelStats.channelSubscribing} subscribing
+            </span>
           </Link>
         </div>
         <Link
           to={"/dashboard/stats"}
           className="py-2 px-4 text-sm flex items-center gap-x-2 bg-[#1e88e5] hover:bg-[#3aa0ff] font-normal-bold text-nowrap text-white rounded-lg md:ml-auto"
         >
-          <ImStatsBars className="text-xl"/>
+          <ImStatsBars className="text-xl" />
           <span>View Professional Stats</span>
         </Link>
       </div>

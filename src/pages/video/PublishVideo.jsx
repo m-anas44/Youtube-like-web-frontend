@@ -74,7 +74,6 @@ function PublishVideo() {
           },
         }
       );
-      console.log(response.data);
       toast.success("Video uploaded successfully!", { id: loadingToast }); // Dismiss loading and show success
       setVideoDetails({
         title: "",
@@ -202,14 +201,14 @@ function PublishVideo() {
                   controls
                   className="w-full h-full max-h-56 md:max-h-80 sm:max-h-64 rounded-t-lg"
                 />
-                <p className="text-sm flex text-black dark-text-secondary m-3 rounded border light-border-primary dark-border-primary overflow-hidden">
+                <div className="text-sm flex text-black dark-text-secondary m-3 rounded border light-border-primary dark-border-primary overflow-hidden">
                   <div className="light-bg-dark dark-bg-secondary text-white p-2 rounded-l font-semibold tracking-wide">
                     Filename
                   </div>
                   <div className="p-2 overflow-hidden light-bg-secondary dark-bg-primary dark-text-primary flex-grow rounded-r text-ellipsis whitespace-nowrap">
                     {videoDetails.videoFile.name}
                   </div>
-                </p>
+                </div>
               </div>
             ) : (
               <div

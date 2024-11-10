@@ -8,7 +8,7 @@ function ChannelTabs({ channelId }) {
     setActiveTab(tab);
   };
   return (
-    <div>
+    <div className="flex flex-col">
       <div className="border-b light-border-primary dark-border-primary px-4">
         <ul
           className="flex space-x-4 text-sm font-medium light-text-secondary dark-text-secondary tracking-wide"
@@ -44,7 +44,7 @@ function ChannelTabs({ channelId }) {
       </div>
 
       {/* Tab Content */}
-      <div className="p-3 md:p-4 lg:p-6 light-bg-secondary dark-bg-secondary">
+      <div className="p-2 light-bg-secondary dark-bg-secondary">
         {activeTab === "videos" && <ChannelVideoTab channelId={channelId} />}
         {activeTab === "playlists" && <ChannelPlaylistTab />}
       </div>

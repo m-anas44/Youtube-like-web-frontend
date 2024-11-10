@@ -3,7 +3,7 @@ import UserPlaylists from '../../../pages/UserPlaylists'
 
 function ChannelPlaylistTab() {
   return (
-    <section>
+    <section className='w-auto'>
         <UserPlaylists />
     </section>
   )

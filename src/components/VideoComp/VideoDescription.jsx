@@ -21,12 +21,10 @@ const VideoDescription = ({ description, views, createdAt }) => {
       </div>
 
       {/* Main Description Content */}
-      <div
-        className={`mt-2 ${
-          isExpanded ? "" : "line-clamp-3"
-        }`}
-      >
-        <pre className="text-wrap font-normal-bold font-normal">{description}</pre>
+      <div className={`mt-2 ${isExpanded ? "" : "line-clamp-3"}`}>
+        <pre className="text-wrap font-normal-bold font-normal">
+          {description}
+        </pre>
       </div>
 
       {/* More/Less Button */}

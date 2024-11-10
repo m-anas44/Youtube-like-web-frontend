@@ -51,7 +51,9 @@ const VideoDropdownMenu = ({ videoId }) => {
       ) {
         toast.error(error.response.data.message);
       } else {
-        toast.error("Playlist may already exist. Please try with another name.");
+        toast.error(
+          "Playlist may already exist. Please try with another name."
+        );
       }
     }
   };
@@ -109,7 +111,7 @@ const VideoDropdownMenu = ({ videoId }) => {
 
   return (
     <>
-    <Toaster position="top-center"/>
+      <Toaster position="top-center" />
       <PlaylistButton openModal={openModal} />
       {isModalOpen && (
         <AddToPlaylistModal

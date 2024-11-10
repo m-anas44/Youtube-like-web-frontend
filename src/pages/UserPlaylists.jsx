@@ -36,7 +36,7 @@ function UserPlaylists() {
   }, [currentUser]);
 
   return (
-    <div className="px-2 sm:px-0 mb-20 md:mb-0 mt-2 m-0 md:m-6">
+    <div className="mb-20 md:mb-0 mt-2 m-2 md:m-6">
       {currentPlaylists.length === 0 ? (
         // Message when there are no playlists
         <p className="text-center font-normal-bold">No playlists found.</p>
@@ -49,7 +49,7 @@ function UserPlaylists() {
                 <th className="py-4 px-6 text-sm md:text-base whitespace-nowrap">
                   Playlist Name
                 </th>
-                <th className="py-4 px-6 text-sm md:text-base whitespace-nowrap">
+                <th className="py-4 px-6 text-sm md:text-base whitespace-nowrap block md:hidden lg:block">
                   Description
                 </th>
                 <th className="py-4 px-6 text-sm md:text-base whitespace-nowrap">
@@ -67,11 +67,15 @@ function UserPlaylists() {
                   key={playlist._id}
                   className="font-normal text-xs md:text-sm border light-border-primary dark-border-primary"
                 >
-                  <td className="py-4 px-6 whitespace-nowrap">{playlist.name}</td>
-                  <td className="py-4 px-6 max-w-xs line-clamp-1">
-                    {playlist.description}
-                  </td>
                   <td className="py-4 px-6 whitespace-nowrap">
+                    {playlist.name}
+                  </td>
+                  <td className="py-4 px-6 max-w-xs block md:hidden lg:block">
+                    <p className="line-clamp-2">
+                    {playlist.description}
+                    </p>
+                  </td>
+                  <td className="py-4 px-6 whitespace-nowrap ">
                     {formatDistanceToNow(new Date(playlist.createdAt), {
                       addSuffix: true,
                     })}

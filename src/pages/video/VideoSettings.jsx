@@ -77,7 +77,11 @@ function VideoSettings() {
       // Dismiss loading toast and show success
       toast.dismiss(toastId);
       toast.success("Video updated successfully!");
-      console.log("Video updated successfully:", response.data);
+      setVideoDetails({
+        title: "",
+        description: "",
+        thumbnail: "",
+      });
     } catch (error) {
       // Dismiss loading toast and show error
       toast.dismiss(toastId);
@@ -94,7 +98,7 @@ function VideoSettings() {
       );
       toast.success("Video deleted successfully!", { id: toastId });
       console.log("Video deleted successfully:", response.data);
-      navigate("/feed/library");
+      navigate("/dashboard");
     } catch (error) {
       toast.error("Error deleting video.", { id: toastId });
       console.error("Error deleting video:", error);
@@ -102,15 +106,12 @@ function VideoSettings() {
   };
 
   return (
-    <div className="p-5 mb-16 md:mb-0">
+    <div className="p-0 md:p-4 mb-16 md:mb-0 font-normal-bold">
       <Toaster position="top-center" reverseOrder={false} />
-      <h2 className="border-b light-border-primary dark-border-primary pb-3 text-3xl font-bold">
+      <h2 className="border-b light-border-primary dark-border-primary pb-3 mx-3 mt-4 text-3xl font-bold">
         Settings
       </h2>
-      <form
-        className="mt-8 p-4 rounded-lg"
-        onSubmit={handleSubmit}
-      >
+      <form className="mt-8 p-4 rounded-lg" onSubmit={handleSubmit}>
         <h3 className="font-semibold text-2xl mb-4">Details</h3>
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-4">
           {/* Left section for form inputs */}
@@ -128,7 +129,7 @@ function VideoSettings() {
                 name="title"
                 value={videoDetails.title}
                 onChange={handleInputChange}
-                className={`block w-full p-2 rounded-lg light-bg-secondary dark-bg-secondary border ${
+                className={`block w-full p-2 font-normal rounded-lg light-bg-secondary dark-bg-secondary border ${
                   errors.title
                     ? "border-red-500"
                     : "light-border-primary dark-border-primary"
@@ -148,7 +149,7 @@ function VideoSettings() {
                 rows={10}
                 value={videoDetails.description}
                 onChange={handleInputChange}
-                className={`block p-2.5 w-full text-sm rounded-lg light-bg-secondary dark-bg-secondary border ${
+                className={`block p-2.5 w-full text-sm font-normal rounded-lg light-bg-secondary dark-bg-secondary border ${
                   errors.description
                     ? "border-red-500"
                     : "light-border-primary dark-border-primary"
@@ -216,7 +217,7 @@ function VideoSettings() {
           More Settings
         </h2>
         <div className="py-7 px-4 border border-red-500 bg-red-400 bg-opacity-50 rounded-lg flex flex-col lg:flex-row justify-start lg:justify-between lg:items-center gap-y-3">
-          <div className="light-text-primary dark-text-primary">
+          <div className="text-black">
             <h4 className="font-bold tracking-wide text-lg">
               Delete Permanently
             </h4>
@@ -228,7 +229,7 @@ function VideoSettings() {
           <button
             type="button"
             onClick={() => handleDelete()}
-            className="rounded-md bg-red-600 py-1 px-2 text-sm font-normal-bold light-text-primary dark-text-primary tracking-wide flex gap-1 items-center justify-center"
+            className="rounded-md bg-red-600 py-1 px-2 text-sm font-normal-bold text-black tracking-wide flex gap-1 items-center justify-center"
           >
             <MdDelete className="text-base" />
             Delete this video

@@ -2,7 +2,11 @@ import React, { useState, useEffect } from "react";
 import useSidebarToggle from "../../context/sideBarToggle";
 import { Link } from "react-router-dom";
 import { IoHomeOutline, IoSettingsOutline, IoAdd } from "react-icons/io5";
-import { MdOutlinePlaylistPlay, MdOutlineHistory, MdOutlineSubscriptions } from "react-icons/md";
+import {
+  MdOutlinePlaylistPlay,
+  MdOutlineHistory,
+  MdOutlineSubscriptions,
+} from "react-icons/md";
 import { BiLike } from "react-icons/bi";
 import { LiaRetweetSolid } from "react-icons/lia";
 import axiosInstance from "../../pages/auth/refreshAccessToken";
@@ -175,7 +179,7 @@ export const NavigationBar = () => {
               className="flex items-center py-2 px-6 light-btn-hover dark-btn-hover font-normal-bold"
             >
               <span className="text-xl flex-shrink-0">
-                <MdOutlineSubscriptions  />
+                <MdOutlineSubscriptions />
               </span>
               <span className={`ms-3 text-sm transition-opacity duration-200`}>
                 All Channels
@@ -217,7 +221,10 @@ export const NavigationBar = () => {
             </span>
             <span className="text-[10px] sm:text-sm">Home</span>
           </Link>
-          <Link to={"/feed/tweets"} className="bottom-nav-items font-normal-bold">
+          <Link
+            to={"/feed/tweets"}
+            className="bottom-nav-items font-normal-bold"
+          >
             <span className="text-xl sm:text-2xl">
               <LiaRetweetSolid />
             </span>
@@ -228,16 +235,19 @@ export const NavigationBar = () => {
           <div className="flex items-center justify-center">
             <Link
               data-tooltip-target="tooltip-new"
-             to={"/video/publishVideo"}
+              to={"/video/publishVideo"}
               className="inline-flex items-center justify-center w-10 h-10  bg-[#1e88e5] rounded-full hover:bg-[#1976d2] group focus:ring-4 focus:ring-[#64b5f6] focus:outline-none dark:focus:ring-[#1565c0]"
             >
               <IoAdd className="text-2xl text-white" />
             </Link>
           </div>
 
-          <Link to={"/feed/channels"} className="bottom-nav-items font-normal-bold">
+          <Link
+            to={"/feed/channels"}
+            className="bottom-nav-items font-normal-bold"
+          >
             <span className="text-xl sm:text-2xl">
-              <MdOutlineSubscriptions  />
+              <MdOutlineSubscriptions />
             </span>
             <span className="text-[10px] sm:text-sm">Channels</span>
           </Link>

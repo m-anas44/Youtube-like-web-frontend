@@ -48,8 +48,8 @@ const Header = () => {
               to="/"
               className="text-xl flex items-center gap-x-2 font-normal-bold font-bold dark-text-primary"
             >
-              <GrYoutube className="text-4xl text-red-500"/>
-              <span >YouTube</span>
+              <GrYoutube className="text-4xl text-[#1e88e5]" />
+              <span>YouTube</span>
             </Link>
           </div>
 
@@ -83,7 +83,7 @@ const Header = () => {
             </button>
             <Link
               to={"/video/publishVideo"}
-              className="sm:flex hidden gap-x-1 text-sm font-semibold items-center light-btn dark-btn px-3 py-2 rounded-full"
+              className="sm:flex hidden gap-x-1 text-sm font-normal-bold items-center light-btn dark-btn px-3 py-2 rounded-full"
             >
               <RiVideoUploadLine className="text-xl" title="Upload video" />
               <span>Upload</span>

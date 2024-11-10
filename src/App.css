@@ -163,3 +163,8 @@
   --yaxis-bg-color: #222222; /* Background color for Y-axis */
   --yaxis-labels-color: #aaa; /* Dark color for Y-axis labels */
 }
+
+
+.custom-line-clamp {
+  line-clamp: 1;
+}

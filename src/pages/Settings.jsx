@@ -233,7 +233,7 @@ export default function Settings() {
                   <img
                     src={avatarPreview}
                     alt="Avatar Preview"
-                    className="h-12 w-12 rounded-full"
+                    className="h-12 w-12 rounded-full object-cover"
                   />
                 ) : (
                   <FaCircleUser className="h-12 w-12 text-[#817f7f]" />

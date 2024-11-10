@@ -32,7 +32,9 @@ function UserHistory() {
 
   return (
     <section className="p-2 sm:p-4 md:p-8 md:mb-0 mb-16">
-      <h2 className="font-normal-bold font-bold text-lg md:text-xl mb-4">History</h2>
+      <h2 className="font-normal-bold font-bold text-lg md:text-xl mb-4">
+        History
+      </h2>
 
       {loading ? (
         // Skeleton for Grid Layout

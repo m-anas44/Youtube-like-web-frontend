@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import axiosInstance from "./auth/refreshAccessToken";
 import VideoCard from "../components/VideoComp/VideoCard";
+import { BsThreeDotsVertical } from "react-icons/bs";
+import { MdSettings } from "react-icons/md";
 
 const UserChannelDetails = () => {
   const { username } = useParams();
@@ -11,6 +13,12 @@ const UserChannelDetails = () => {
   const [channelVideos, setChannelVideos] = useState([]);
   const [messages, setMessages] = useState([]);
   const [activeTab, setActiveTab] = useState("videos");
+  const [activeDropdown, setActiveDropdown] = useState(null);
+
+  const toggleDropdown = (videoId) => {
+    setActiveDropdown((prev) => (prev === videoId ? null : videoId));
+  };
+
   const handleTabChange = (tab) => {
     setActiveTab(tab);
   };
@@ -72,7 +80,6 @@ const UserChannelDetails = () => {
           `/tweet/user/${channelUser._id}`
         );
         setMessages(response.data.data);
-        console.log(response.data.data);
       } catch (error) {
         console.error(
           "Failed to fetch user tweets:",
@@ -85,7 +92,7 @@ const UserChannelDetails = () => {
     }
   }, [currentUser]);
   return (
-    <div className="bg-transparent light-text-primary dark-text-primary px-2 md:mx-10 my-6 mb-16 md:mb-0">
+    <div className="bg-transparent light-text-primary dark-text-primary px-2 md:mx-10 my-6 mb-16 md:mb-0 pb-8">
       <div>
         <img
           className="h-auto max-h-[17rem] w-full object-cover rounded-lg shadow-md"
@@ -161,6 +168,19 @@ const UserChannelDetails = () => {
                 Tweets
               </button>
             </li>
+            <li>
+              <button
+                onClick={() => handleTabChange("settings")}
+                className={`py-2 px-4 rounded-t-lg ${
+                  activeTab === "settings"
+                    ? "text-red-600 border-b-2 border-red-600 dark:text-red-500"
+                    : "hover:text-gray-700 dark:hover:text-gray-300"
+                }`}
+                role="tab"
+              >
+                Settings
+              </button>
+            </li>
           </ul>
         </div>
 
@@ -196,6 +216,47 @@ const UserChannelDetails = () => {
                       <span className="text-xs float-right font-normal light-text-secondary dark-text-secondary">
                         {new Date(message.createdAt).toLocaleTimeString()}
                       </span>
+                    </div>
+                  </div>
+                );
+              })}
+            </section>
+          )}
+
+          {activeTab === "settings" && (
+            <section className="font-normal-bold font-normal space-y-2">
+              {channelVideos.map((video) => {
+                return (
+                  <div className="flex items-center gap-x-3" key={video._id}>
+                    <img
+                      src={video.thumbnail}
+                      alt="thumbnail"
+                      className="w-24 lg:w-32 rounded-md object-cover"
+                      style={{ aspectRatio: "16/9" }}
+                    />
+                    <div className="max-w-sm">
+                      <h5 className="text-base lg:text-lg tracking-wide line-clamp-2">
+                        {video.title}
+                      </h5>
+                    </div>
+                    <div className="relative ml-auto">
+                      <button
+                        onClick={() => toggleDropdown(video._id)}
+                        className="p-2 rounded-full light-btn-hover dark-btn-hover"
+                      >
+                        <BsThreeDotsVertical className="text-lg light-text-secondary dark-text-secondary" />
+                      </button>
+                      {activeDropdown === video._id && (
+                        <div className="absolute mt-2 left-1/2 transform -translate-x-[85%] w-40 rounded-lg shadow-lg border light-border-secondary dark-border-secondary z-10 py-3 light-bg-secondary dark-bg-secondary font-normal-bold font-normal">
+                          <Link
+                            to={`/settings/video/${video._id}`}
+                            className="flex gap-x-1 items-center w-full text-left px-4 py-2 text-sm dark-btn-hover light-btn-hover"
+                          >
+                            <MdSettings className="text-lg" />
+                            <span>Go to settings</span>
+                          </Link>
+                        </div>
+                      )}
                     </div>
                   </div>
                 );

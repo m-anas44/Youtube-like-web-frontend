@@ -70,7 +70,11 @@ function BarChart({ height = 350, series, colors, options }) {
 function ChannelViewsStats({ dailyViewsData = [] }) {
   // Check if there is any data to display
   if (dailyViewsData.length === 0) {
-    return <p className="font-normal-bold font-normal">Data will display once it'll available.</p>;
+    return (
+      <p className="font-normal-bold font-normal">
+        Data will display once it'll available.
+      </p>
+    );
   }
 
   // Prepare data for the bar chart

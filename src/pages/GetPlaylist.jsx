@@ -15,7 +15,7 @@ function GetPlaylist() {
   const [showUpdateModal, setShowUpdateModal] = useState(false);
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
-  const [activeDropdown, setActiveDropdown] = useState(null); // Track active dropdown by video ID
+  const [activeDropdown, setActiveDropdown] = useState(null);
 
   const toggleDropdown = (videoId) => {
     setActiveDropdown((prev) => (prev === videoId ? null : videoId));
@@ -91,11 +91,11 @@ function GetPlaylist() {
   const thumbnail = currentPlaylists?.videos?.[0]?.thumbnail ?? "";
 
   return (
-    <div className="flex flex-col md:flex-row my-4 mx-2 md:mx-6 mb-20 md:mb-0 gap-4">
+    <div className="flex flex-col lg:flex-row my-4 mx-2 md:mx-6 mb-20 md:mb-0 gap-4">
       <Toaster position="top-center" reverseOrder={false} />
 
       {/* Playlist Info */}
-      <div className="bg-gradient-to-b from-[#dbdbdb] to-white dark:from-[#2b2b2b] dark:to-[#0f0f0f] p-4 rounded-lg font-normal-bold md:h-[85vh] md:sticky md:top-16 md:left-0 w-full md:max-w-sm flex-grow">
+      <div className="bg-gradient-to-b from-[#dbdbdb] to-white dark:from-[#2b2b2b] dark:to-[#0f0f0f] p-4 rounded-lg font-normal-bold md:h-[85vh] md:sticky md:top-16 md:left-0 w-full lg:max-w-xl flex-grow">
         <div className="flex flex-col">
           <img
             src={thumbnail}
@@ -105,7 +105,7 @@ function GetPlaylist() {
           />
           <div>
             <h2 className="text-xl lg:text-2xl font-bold">
-              {currentPlaylists?.name || "Playlist Name"}
+              {currentPlaylists?.name || "Playlist Name"} 
             </h2>
             <div className="text-xs font-normal light-text-secondary dark-text-secondary mt-4">
               <p className="text-base capitalize">
