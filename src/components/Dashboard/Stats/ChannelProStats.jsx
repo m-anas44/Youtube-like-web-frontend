@@ -83,7 +83,7 @@ function ChannelProStats() {
               <img
                 src={currentChannel?.avatar}
                 alt="channel user"
-                className="rounded-full w-32 h-32 mx-auto"
+                className="rounded-full w-32 h-32 mx-auto object-cover"
               />
               <h4 className="capitalize text-xl mt-1">
                 {currentChannel?.fullName}

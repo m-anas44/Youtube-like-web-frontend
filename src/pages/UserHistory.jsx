@@ -43,6 +43,9 @@ function UserHistory() {
             <SkeletonCard key={index} />
           ))}
         </div>
+      ) : videos.length === 0 ? (
+        // Message when no history is available
+        <div className="text-center text-gray-500">No history available.</div>
       ) : (
         <div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 my-4">
           {videos.map((video) => (
@@ -58,6 +61,9 @@ function UserHistory() {
             <SkeletonCard key={index} />
           ))}
         </div>
+      ) : videos.length === 0 ? (
+        // Message when no history is available in list layout
+        <div className="text-center text-gray-500">No history available.</div>
       ) : (
         <div className="flex flex-col gap-y-2 sm:hidden">
           {videos.map((video) => (
