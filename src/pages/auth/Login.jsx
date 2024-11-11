@@ -57,6 +57,9 @@ const Login = () => {
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto h-screen lg:py-0">
         <div className="w-full rounded-lg shadow border light-border-secondary dark-border-secondary md:mt-0 sm:max-w-md xl:p-0 bg-transparent">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
+            <p className="text-[#f44336] text-xs font-normal">
+              It is suggested to login and register with your fake information. It may also include fake videos and channels. This project is just for demonstration of proficiency in development.
+            </p>
             <h1 className="text-xl font-bold font-normal-bold leading-tight tracking-tight light-text-primary dark-text-primary md:text-2xl">
               Login to your account
             </h1>
