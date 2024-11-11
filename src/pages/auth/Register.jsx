@@ -13,11 +13,11 @@ const Register = () => {
 
   const [avatarPreview, setAvatarPreview] = useState(null);
   const [coverImagePreview, setCoverImagePreview] = useState(null);
-
+  const [register, setRegister] = useState("Create an account");
   const avatarInputRef = useRef(null);
   const coverInputRef = useRef(null);
   const navigate = useNavigate();
-  
+
   const handleImageChange = (e) => {
     const { name, files } = e.target;
     if (files && files[0]) {
@@ -47,6 +47,7 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setRegister("Registering...");
     const formDataToSend = new FormData();
 
     // Append the form fields to the FormData object
@@ -64,6 +65,7 @@ const Register = () => {
           },
         }
       );
+      setRegister("Create an account");
       navigate("/login");
     } catch (error) {
       console.error(
@@ -226,7 +228,7 @@ const Register = () => {
                 type="submit"
                 className="w-full light-btn dark-btn focus:outline-none font-normal-bold rounded-lg text-sm px-5 py-2.5 text-center"
               >
-                Create an account
+                {register}
               </button>
 
               {/* Already have an account? */}

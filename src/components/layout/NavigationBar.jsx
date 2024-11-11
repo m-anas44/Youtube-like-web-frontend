@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import useSidebarToggle from "../../context/sideBarToggle";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { IoHomeOutline, IoSettingsOutline, IoAdd } from "react-icons/io5";
 import {
   MdOutlinePlaylistPlay,
@@ -59,9 +59,10 @@ export const NavigationBar = () => {
         >
           <ul className="space-y-1 tracking-wide mt-14">
             <li>
-              <Link
+              <NavLink
                 to="/"
                 className="flex items-center py-2 px-6 light-btn-hover dark-btn-hover font-normal-bold font-normal"
+                activeClassName="light-btn dark-btn"
               >
                 <span className="text-xl flex-shrink-0">
                   <IoHomeOutline />
@@ -73,11 +74,12 @@ export const NavigationBar = () => {
                 >
                   Home
                 </span>
-              </Link>
+              </NavLink>
             </li>
             <li>
-              <Link
+              <NavLink
                 to="/feed/tweets"
+                activeClassName="light-btn dark-btn"
                 className="flex items-center light-btn-hover dark-btn-hover py-2 px-6 font-normal-bold font-normal"
               >
                 <span className="text-xl flex-shrink-0">
@@ -90,7 +92,7 @@ export const NavigationBar = () => {
                 >
                   Tweet
                 </span>
-              </Link>
+              </NavLink>
             </li>
             <hr
               className={`light-border-primary dark-border-primary ${
@@ -98,8 +100,9 @@ export const NavigationBar = () => {
               }`}
             />
             <li>
-              <Link
+              <NavLink
                 to="/feed/history"
+                activeClassName="light-btn dark-btn"
                 className="flex items-center py-2 px-6 light-btn-hover dark-btn-hover font-normal-bold font-normal"
               >
                 <span className="text-xl flex-shrink-0">
@@ -112,11 +115,12 @@ export const NavigationBar = () => {
                 >
                   History
                 </span>
-              </Link>
+              </NavLink>
             </li>
             <li>
-              <Link
+              <NavLink
                 to="/feed/playlists"
+                activeClassName="light-btn dark-btn"
                 className="flex items-center py-2 px-6 light-btn-hover dark-btn-hover font-normal-bold font-normal"
               >
                 <span className="text-xl flex-shrink-0">
@@ -129,11 +133,12 @@ export const NavigationBar = () => {
                 >
                   Playlists
                 </span>
-              </Link>
+              </NavLink>
             </li>
             <li>
-              <Link
+              <NavLink
                 to="/feed/likedVideos"
+                activeClassName="light-btn dark-btn"
                 className="flex items-center py-2 px-6 light-btn-hover dark-btn-hover font-normal-bold font-normal"
               >
                 <span className="text-xl flex-shrink-0">
@@ -146,7 +151,7 @@ export const NavigationBar = () => {
                 >
                   Liked Videos
                 </span>
-              </Link>
+              </NavLink>
             </li>
           </ul>
           <hr
@@ -193,8 +198,9 @@ export const NavigationBar = () => {
             }`}
           />
           <div className="mt-auto">
-            <Link
+            <NavLink
               to="/settings/user"
+              activeClassName="light-btn dark-btn"
               className="flex items-center py-2 px-6 light-btn-hover dark-btn-hover font-normal-bold font-normal"
             >
               <span className="text-xl flex-shrink-0">
@@ -207,7 +213,7 @@ export const NavigationBar = () => {
               >
                 Settings
               </span>
-            </Link>
+            </NavLink>
           </div>
         </div>
       </aside>
@@ -215,21 +221,27 @@ export const NavigationBar = () => {
       {/* Bottom navigation bar for screens smaller than md */}
       <div className="fixed z-50 h-16 w-full px-0.5 sm:px-4 bg-white border-t light-border-primary dark-border-primary bottom-0 left-1/2 transform -translate-x-1/2 dark:bg-[#0f0f0f] md:hidden mx-auto">
         <div className="grid h-full max-w-lg grid-cols-5 mx-auto">
-          <Link to={"/"} className="bottom-nav-items font-normal-bold">
+          <NavLink
+            to={"/"}
+            className="bottom-nav-items font-normal-bold"
+            activeClassName="text-[#1e88e5]" // Active color or style
+          >
             <span className="text-xl sm:text-2xl">
               <IoHomeOutline />
             </span>
             <span className="text-[10px] sm:text-sm">Home</span>
-          </Link>
-          <Link
+          </NavLink>
+
+          <NavLink
             to={"/feed/tweets"}
             className="bottom-nav-items font-normal-bold"
+            activeClassName="text-[#1e88e5]"
           >
             <span className="text-xl sm:text-2xl">
               <LiaRetweetSolid />
             </span>
             <span className="text-[10px] sm:text-sm">Tweet</span>
-          </Link>
+          </NavLink>
 
           {/* Centered Create Button */}
           <div className="flex items-center justify-center">
@@ -242,17 +254,19 @@ export const NavigationBar = () => {
             </Link>
           </div>
 
-          <Link
+          <NavLink
             to={"/feed/channels"}
             className="bottom-nav-items font-normal-bold"
+            activeClassName="text-[#1e88e5]"
           >
             <span className="text-xl sm:text-2xl">
               <MdOutlineSubscriptions />
             </span>
             <span className="text-[10px] sm:text-sm">Channels</span>
-          </Link>
-          <Link
+          </NavLink>
+          <NavLink
             to={"/feed/library"}
+            activeClassName="text-[#1e88e5]"
             className="bottom-nav-items font-normal-bold"
           >
             <img
@@ -261,7 +275,7 @@ export const NavigationBar = () => {
               className="w-5 h-5 sm:w-6 sm:h-6 rounded-full object-fill border border-black dark:border-white p-[1px]"
             />
             <span className="text-[10px] sm:text-sm">Me</span>
-          </Link>
+          </NavLink>
         </div>
       </div>
     </>

@@ -87,9 +87,7 @@ const UserChannelDetails = () => {
         );
       }
     };
-    if (currentUser) {
       fetchTweets();
-    }
   }, [currentUser]);
   return (
     <div className="bg-transparent light-text-primary dark-text-primary px-2 md:mx-10 my-6 mb-16 md:mb-0 pb-8">
@@ -174,19 +172,23 @@ const UserChannelDetails = () => {
                 Tweets
               </button>
             </li>
-            <li>
-              <button
-                onClick={() => handleTabChange("settings")}
-                className={`py-2 px-4 rounded-t-lg ${
-                  activeTab === "settings"
-                    ? "text-red-600 border-b-2 border-red-600 dark:text-red-500"
-                    : "hover:text-gray-700 dark:hover:text-gray-300"
-                }`}
-                role="tab"
-              >
-                Settings
-              </button>
-            </li>
+            {currentUser.username === channelUser.username ? (
+              <li>
+                <button
+                  onClick={() => handleTabChange("settings")}
+                  className={`py-2 px-4 rounded-t-lg ${
+                    activeTab === "settings"
+                      ? "text-red-600 border-b-2 border-red-600 dark:text-red-500"
+                      : "hover:text-gray-700 dark:hover:text-gray-300"
+                  }`}
+                  role="tab"
+                >
+                  Settings
+                </button>
+              </li>
+            ) : (
+              ""
+            )}
           </ul>
         </div>
 
