@@ -118,14 +118,14 @@ const UserChannelDetails = () => {
                 {currentUser.username === channelUser.username ? (
                   <Link to={"/feed/subscribers"}>
                     <span className="text-sm light-text-secondary dark-text-secondary font-normal-bold">
-                    • {channelUser.subscribersCount} subscribers
+                      • {channelUser.subscribersCount} subscribers
                     </span>
                   </Link>
-                ):(
-                   <span className="text-sm light-text-secondary dark-text-secondary font-normal-bold">
-                       • {channelUser.subscribersCount} subscribers
-                   </span>
-                 )}
+                ) : (
+                  <span className="text-sm light-text-secondary dark-text-secondary font-normal-bold">
+                    • {channelUser.subscribersCount} subscribers
+                  </span>
+                )}
               </div>
             </div>
             {channelUser.username !== currentUser.username && (

@@ -43,12 +43,16 @@ function LikedVideos() {
             <SkeletonCard key={index} />
           ))}
         </div>
-      ) : (
+      ) : videos.length > 0 ? (
         <div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 my-4">
           {videos.map((video) => (
             <VideoCard key={video._id} video={video} />
           ))}
         </div>
+      ) : (
+        <p className="text-center text-lg font-semibold text-gray-500">
+          No liked videos
+        </p>
       )}
 
       {loading ? (
@@ -58,12 +62,16 @@ function LikedVideos() {
             <SkeletonCard key={index} />
           ))}
         </div>
-      ) : (
+      ) : videos.length > 0 ? (
         <div className="flex flex-col gap-y-2 sm:hidden">
           {videos.map((video) => (
             <VideoListCard key={video._id} video={video} />
           ))}
         </div>
+      ) : (
+        <p className="text-center text-lg font-semibold text-gray-500">
+          No liked videos
+        </p>
       )}
     </section>
   );
