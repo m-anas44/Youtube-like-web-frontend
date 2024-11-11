@@ -17,7 +17,9 @@ axiosInstance.interceptors.response.use(
       originalRequest._retry = true;
       try {
         const response = await axios.post(
-          "https://pro-backend-production-2d96.up.railway.app/api/v1/users/refreshToken"
+          "https://pro-backend-production-2d96.up.railway.app/api/v1/users/refreshToken",
+          null,
+          { withCredentials: false }
         );
         const { accessToken } = response.data.data;
         localStorage.setItem("accessToken", accessToken);
