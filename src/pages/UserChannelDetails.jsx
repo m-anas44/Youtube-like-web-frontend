@@ -80,6 +80,7 @@ const UserChannelDetails = () => {
           `/tweet/user/${channelUser._id}`
         );
         setMessages(response.data.data);
+        console.log(response.data.data)
       } catch (error) {
         console.error(
           "Failed to fetch user tweets:",
@@ -88,7 +89,7 @@ const UserChannelDetails = () => {
       }
     };
       fetchTweets();
-  }, [currentUser]);
+  }, [channelUser]);
   return (
     <div className="bg-transparent light-text-primary dark-text-primary px-2 md:mx-10 my-6 mb-16 md:mb-0 pb-8">
       <div>

@@ -50,7 +50,7 @@ function LikedVideos() {
           ))}
         </div>
       ) : (
-        <p className="text-center text-lg font-semibold text-gray-500">
+        <p className="text-center text-lg font-normal-bold light-text-secondary dark-text-secondary hidden sm:block">
           No liked videos
         </p>
       )}
@@ -69,7 +69,7 @@ function LikedVideos() {
           ))}
         </div>
       ) : (
-        <p className="text-center text-lg font-semibold text-gray-500">
+        <p className="text-center text-lg font-normal-bold light-text-secondary dark-text-secondary sm:hidden">
           No liked videos
         </p>
       )}
