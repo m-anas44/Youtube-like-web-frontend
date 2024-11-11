@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { IoSearch, IoArrowBack } from "react-icons/io5";
 import { RiVideoUploadLine } from "react-icons/ri";
 import { MdMenu } from "react-icons/md";
@@ -11,7 +11,6 @@ const Header = () => {
   const [isSearchActive, setIsSearchActive] = useState(false);
   const [menuToggle, setMenuToggle] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
-  // const searchInputRef = useRef(null);
   const navigate = useNavigate();
 
   const toggleSearch = () => {

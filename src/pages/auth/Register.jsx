@@ -16,7 +16,8 @@ const Register = () => {
 
   const avatarInputRef = useRef(null);
   const coverInputRef = useRef(null);
-
+  const navigate = useNavigate();
+  
   const handleImageChange = (e) => {
     const { name, files } = e.target;
     if (files && files[0]) {
@@ -53,7 +54,6 @@ const Register = () => {
       formDataToSend.append(key, formData[key]);
     }
 
-    const navigate = useNavigate();
     try {
       const response = await axiosInstance.post(
         "/users/register",
