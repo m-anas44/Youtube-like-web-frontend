@@ -64,7 +64,7 @@ export const NavigationBar = () => {
                 className={({ isActive }) =>
                   `flex items-center py-2 px-6 font-normal-bold font-normal ${
                     isActive
-                      ? "light-btn dark-btn"
+                      ? "bg-[#1e88e5] text-white"
                       : "light-btn-hover dark-btn-hover"
                   }`
                 }
@@ -88,7 +88,7 @@ export const NavigationBar = () => {
                 className={({ isActive }) =>
                   `flex items-center py-2 px-6 font-normal-bold font-normal ${
                     isActive
-                      ? "light-btn dark-btn"
+                      ? "bg-[#1e88e5] text-white"
                       : "light-btn-hover dark-btn-hover"
                   }`
                 }
@@ -118,7 +118,7 @@ export const NavigationBar = () => {
                 className={({ isActive }) =>
                   `flex items-center py-2 px-6 font-normal-bold font-normal ${
                     isActive
-                      ? "light-btn dark-btn"
+                      ? "bg-[#1e88e5] text-white"
                       : "light-btn-hover dark-btn-hover"
                   }`
                 }
@@ -142,7 +142,7 @@ export const NavigationBar = () => {
                 className={({ isActive }) =>
                   `flex items-center py-2 px-6 font-normal-bold font-normal ${
                     isActive
-                      ? "light-btn dark-btn"
+                      ? "bg-[#1e88e5] text-white"
                       : "light-btn-hover dark-btn-hover"
                   }`
                 }
@@ -166,7 +166,7 @@ export const NavigationBar = () => {
                 className={({ isActive }) =>
                   `flex items-center py-2 px-6 font-normal-bold font-normal ${
                     isActive
-                      ? "light-btn dark-btn"
+                      ? "bg-[#1e88e5] text-white"
                       : "light-btn-hover dark-btn-hover"
                   }`
                 }
@@ -235,7 +235,7 @@ export const NavigationBar = () => {
               className={({ isActive }) =>
                 `flex items-center py-2 px-6 font-normal-bold font-normal ${
                   isActive
-                    ? "light-btn dark-btn"
+                    ? "bg-[#1e88e5] text-white"
                     : "light-btn-hover dark-btn-hover"
                 }`
               }

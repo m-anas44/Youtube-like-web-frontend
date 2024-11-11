@@ -82,7 +82,7 @@ const Header = () => {
             </button>
             <Link
               to={"/video/publishVideo"}
-              className="sm:flex hidden gap-x-1 text-sm font-normal-bold items-center light-btn dark-btn px-3 py-2 rounded-full"
+              className="sm:flex hidden gap-x-1 text-sm font-normal-bold items-center bg-[#1e88e5] text-white px-3 py-2 rounded-full"
             >
               <RiVideoUploadLine className="text-xl" title="Upload video" />
               <span>Upload</span>
