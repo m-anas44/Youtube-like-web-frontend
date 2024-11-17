@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 function VideoListCard({ video }) {
   return (
-    <Link to={`/watch/${video._id}`} reloadDocument>
+    <Link to={`/watch/${video._id}`}>
       <section className="flex gap-x-3 bg-transparent rounded-lg font-normal-bold">
         {/* Thumbnail with Duration Overlay */}
         <div className="relative w-32 h-20">
