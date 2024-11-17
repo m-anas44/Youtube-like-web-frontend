@@ -72,7 +72,7 @@ function App() {
     {
       path: "/",
       element: <WatchLayout />,
-      children: [{ path: "watch/:videoID", element: <WatchVideo /> }],
+      children: [{ path: "/watch/:videoID", element: <WatchVideo /> }],
     },
     { path: "/register", element: <Register /> },
     { path: "/login", element: <Login /> },

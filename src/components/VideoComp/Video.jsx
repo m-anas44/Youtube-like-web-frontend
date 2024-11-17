@@ -57,7 +57,7 @@ function Video() {
   };
 
   // Get current video link
-  const videoLink = `${window.location.origin}/videos/watch/${videoID}`;
+  const videoLink = `${window.location.origin}/watch/${videoID}`;
 
   // Share button click handler
   const handleShareClick = () => {
