@@ -101,7 +101,7 @@ const Register = () => {
         <div className="w-full max-w-xl rounded-lg shadow bg-transparent border light-border-secondary dark-border-secondary">
           {/* Cover Image Section */}
           <div
-            className="relative mb-8 w-full h-40 bg-[#c1c1c1] dark:bg-[#3a3a3a] rounded-t-lg cursor-pointer"
+            className="relative w-full h-40 bg-[#c1c1c1] dark:bg-[#3a3a3a] rounded-t-lg cursor-pointer"
             onClick={handleCoverClick}
           >
             {coverImagePreview ? (
@@ -125,9 +125,7 @@ const Register = () => {
             />
           </div>
           {errorMessages.coverImage && (
-            <p className="text-red-500 text-sm text-center">
-              {errorMessages.coverImage}
-            </p>
+            <p className="text-red-500 text-sm">{errorMessages.coverImage}</p>
           )}
 
           {/* Avatar Section */}
@@ -184,8 +182,10 @@ const Register = () => {
                     setFormData({ ...formData, fullName: e.target.value })
                   }
                 />
-                 {errorMessages.fullName && (
-                  <p className="text-red-500 text-sm">{errorMessages.fullName}</p>
+                {errorMessages.fullName && (
+                  <p className="text-red-500 text-sm">
+                    {errorMessages.fullName}
+                  </p>
                 )}
               </div>
 
@@ -208,8 +208,10 @@ const Register = () => {
                     setFormData({ ...formData, username: e.target.value })
                   }
                 />
-                 {errorMessages.username && (
-                  <p className="text-red-500 text-sm">{errorMessages.username}</p>
+                {errorMessages.username && (
+                  <p className="text-red-500 text-sm">
+                    {errorMessages.username}
+                  </p>
                 )}
               </div>
 
@@ -227,13 +229,12 @@ const Register = () => {
                   id="email"
                   className="border light-border-primary dark-border-primary light-bg-secondary dark-bg-secondary light-text-primary dark-text-primary text-sm rounded-lg block w-full p-2.5"
                   placeholder="name@company.com"
-                  
                   value={formData.email}
                   onChange={(e) =>
                     setFormData({ ...formData, email: e.target.value })
                   }
                 />
-                 {errorMessages.email && (
+                {errorMessages.email && (
                   <p className="text-red-500 text-sm">{errorMessages.email}</p>
                 )}
               </div>
@@ -258,7 +259,9 @@ const Register = () => {
                   }
                 />
                 {errorMessages.password && (
-                  <p className="text-red-500 text-sm">{errorMessages.password}</p>
+                  <p className="text-red-500 text-sm">
+                    {errorMessages.password}
+                  </p>
                 )}
               </div>
 
