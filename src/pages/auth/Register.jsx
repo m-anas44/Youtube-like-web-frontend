@@ -14,6 +14,7 @@ const Register = () => {
   const [avatarPreview, setAvatarPreview] = useState(null);
   const [coverImagePreview, setCoverImagePreview] = useState(null);
   const [register, setRegister] = useState("Create an account");
+  const [errorMessages, setErrorMessages] = useState({});
   const avatarInputRef = useRef(null);
   const coverInputRef = useRef(null);
   const navigate = useNavigate();
@@ -48,6 +49,24 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setRegister("Registering...");
+
+    // Validation logic
+    const errors = {};
+    if (!formData.fullName.trim()) errors.fullName = "Full Name is required.";
+    if (!formData.username.trim()) errors.username = "Username is required.";
+    if (!formData.email.trim()) errors.email = "Email is required.";
+    if (!formData.password.trim()) errors.password = "Password is required.";
+    if (!formData.avatar) errors.avatar = "Avatar is required.";
+    if (!formData.coverImage) errors.coverImage = "Cover Image is required.";
+
+    if (Object.keys(errors).length > 0) {
+      setErrorMessages(errors);
+      setRegister("Create an account");
+      return;
+    }
+
+    // Reset error messages if validation passes
+    setErrorMessages({});
     const formDataToSend = new FormData();
 
     // Append the form fields to the FormData object
@@ -72,6 +91,7 @@ const Register = () => {
         "Registration error:",
         error.response ? error.response.data : error.message
       );
+      setRegister("Create an account");
     }
   };
 
@@ -104,6 +124,11 @@ const Register = () => {
               ref={coverInputRef}
             />
           </div>
+          {errorMessages.coverImage && (
+            <p className="text-red-500 text-sm text-center">
+              {errorMessages.coverImage}
+            </p>
+          )}
 
           {/* Avatar Section */}
           <div className="relative flex justify-center">
@@ -132,6 +157,11 @@ const Register = () => {
               />
             </div>
           </div>
+          {errorMessages.avatar && (
+            <p className="text-red-500 text-sm text-center">
+              {errorMessages.avatar}
+            </p>
+          )}
 
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
             <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit}>
@@ -149,12 +179,14 @@ const Register = () => {
                   id="fullname"
                   placeholder="Full Name"
                   className="border light-border-primary dark-border-primary light-bg-secondary dark-bg-secondary light-text-primary dark-text-primary text-sm rounded-lg block w-full p-2.5"
-                  required
                   value={formData.fullName}
                   onChange={(e) =>
                     setFormData({ ...formData, fullName: e.target.value })
                   }
                 />
+                 {errorMessages.fullName && (
+                  <p className="text-red-500 text-sm">{errorMessages.fullName}</p>
+                )}
               </div>
 
               {/* Username */}
@@ -171,12 +203,14 @@ const Register = () => {
                   id="username"
                   placeholder="Username"
                   className="border light-border-primary dark-border-primary light-bg-secondary dark-bg-secondary light-text-primary dark-text-primary text-sm rounded-lg block w-full p-2.5"
-                  required
                   value={formData.username}
                   onChange={(e) =>
                     setFormData({ ...formData, username: e.target.value })
                   }
                 />
+                 {errorMessages.username && (
+                  <p className="text-red-500 text-sm">{errorMessages.username}</p>
+                )}
               </div>
 
               {/* Email */}
@@ -193,12 +227,15 @@ const Register = () => {
                   id="email"
                   className="border light-border-primary dark-border-primary light-bg-secondary dark-bg-secondary light-text-primary dark-text-primary text-sm rounded-lg block w-full p-2.5"
                   placeholder="name@company.com"
-                  required
+                  
                   value={formData.email}
                   onChange={(e) =>
                     setFormData({ ...formData, email: e.target.value })
                   }
                 />
+                 {errorMessages.email && (
+                  <p className="text-red-500 text-sm">{errorMessages.email}</p>
+                )}
               </div>
 
               {/* Password */}
@@ -215,12 +252,14 @@ const Register = () => {
                   id="password"
                   placeholder="••••••••"
                   className="border light-border-primary dark-border-primary light-bg-secondary dark-bg-secondary light-text-primary dark-text-primary text-sm rounded-lg block w-full p-2.5"
-                  required
                   value={formData.password}
                   onChange={(e) =>
                     setFormData({ ...formData, password: e.target.value })
                   }
                 />
+                {errorMessages.password && (
+                  <p className="text-red-500 text-sm">{errorMessages.password}</p>
+                )}
               </div>
 
               {/* Submit Button */}
