@@ -70,7 +70,7 @@ function BarChart({ height = 350, series, colors, options }) {
 function ChannelCommentStats({ dailyCommentsData = [] }) {
   if (dailyCommentsData.length === 0) {
     return (
-      <p className="grid place-items-center font-normal-bold font-normal">
+      <p className="grid place-items-center text-center light-bg-secondary dark-bg-secondary font-normal-bold font-normal">
         Data will display once it'll available.
       </p>
     );
