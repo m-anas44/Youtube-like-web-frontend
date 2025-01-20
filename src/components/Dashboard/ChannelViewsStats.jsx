@@ -71,7 +71,7 @@ function ChannelViewsStats({ dailyViewsData = [] }) {
   // Check if there is any data to display
   if (dailyViewsData.length === 0) {
     return (
-      <p className="grid place-items-center text-center light-bg-secondary dark-bg-secondary font-normal-bold font-normal w-full">
+      <p className="grid place-items-center text-center light-bg-secondary dark-bg-secondary font-normal-bold font-normal flex-grow">
         Data will display once it'll available.
       </p>
     );
