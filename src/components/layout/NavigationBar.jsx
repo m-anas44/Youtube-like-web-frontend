@@ -42,7 +42,7 @@ export const NavigationBar = () => {
     fetchSubscriptions();
   }, [currentUser]);
 
-  const subscribedChannels = subscriptions.slice(0, 7);
+  const subscribedChannels = subscriptions.slice(0, 3);
   return (
     <>
       {/* Sidebar for screens md and larger */}

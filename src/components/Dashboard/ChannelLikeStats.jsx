@@ -71,7 +71,7 @@ function BarChart({ height = 350, series, colors, options }) {
 function ChannelLikeStats({ dailyLikesData = [] }) {
   if (dailyLikesData.length === 0) {
     return (
-      <p className="font-normal-bold font-normal">
+      <p className="grid place-items-center font-normal-bold font-normal">
         Data will display once it'll available.
       </p>
     );

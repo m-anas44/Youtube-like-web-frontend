@@ -36,11 +36,11 @@ function ChannelInfo() {
   return (
     <div className="w-full px-2 mx-auto my-6 rounded-lg overflow-hidden bg-transparent">
       {/* Cover Image */}
-      <div>
+      <div className="light-bg-secondary dark-bg-secondary">
         <img
           src={currentChannel.coverImage}
           alt="Cover"
-          className="w-full h-full"
+          className="w-full object-contain min-h-min max-h-56"
         />
       </div>
       <div className="p-3 py-4 md:py-3 md:p-4 flex flex-col md:flex-row items-center gap-3 -mt-12 md:-mt-0 border-b light-border-primary dark-border-primary mb-1">
