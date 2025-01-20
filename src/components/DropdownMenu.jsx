@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axiosInstance from "../pages/auth/refreshAccessToken";
 import useTheme from "../context/switcher";
@@ -15,10 +15,25 @@ const DropdownMenu = () => {
   const [isChecked, setIsChecked] = useState(savedTheme === "dark");
   const navigate = useNavigate();
   const { lightMode, darkMode } = useTheme();
+  const dropdownRef = useRef(null); // Ref for the dropdown
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
+
+  // Close dropdown if clicked outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   useEffect(() => {
     if (isChecked) {
@@ -64,7 +79,7 @@ const DropdownMenu = () => {
   }
 
   return (
-    <div className="relative inline-block">
+    <div className="relative inline-block" ref={dropdownRef}>
       <button
         id="dropdownInformationButton"
         onClick={toggleDropdown}
@@ -105,6 +120,7 @@ const DropdownMenu = () => {
               <Link
                 to={`/channel/${currentUser.username}`}
                 className="flex items-center py-2 px-3 light-btn-hover dark-btn-hover"
+                onClick={() => setIsDropdownOpen(false)} // Close dropdown
               >
                 <span className="text-lg flex-shrink-0">
                   <GrChannel />
@@ -112,11 +128,11 @@ const DropdownMenu = () => {
                 <span className="ms-2 text-sm">View Channel</span>
               </Link>
             </li>
-            <li></li>
             <li>
               <Link
                 to="/dashboard"
                 className="flex items-center py-2 px-3 light-btn-hover dark-btn-hover"
+                onClick={() => setIsDropdownOpen(false)} // Close dropdown
               >
                 <span className="text-lg flex-shrink-0">
                   <LuLayoutDashboard />
@@ -128,6 +144,7 @@ const DropdownMenu = () => {
               <Link
                 to="/feed/library"
                 className="flex items-center py-2 px-3 light-btn-hover dark-btn-hover"
+                onClick={() => setIsDropdownOpen(false)} // Close dropdown
               >
                 <span className="text-lg flex-shrink-0">
                   <LuLibrary />
@@ -142,7 +159,7 @@ const DropdownMenu = () => {
               <input
                 type="checkbox"
                 checked={isChecked}
-                onChange={handleCheckboxChange} // Toggling theme on change
+                onChange={handleCheckboxChange}
                 className="sr-only"
               />
               <div className="shadow-md flex h-[38px] w-[68px] items-center justify-center rounded-md bg-white dark:bg-[#222222]">
@@ -172,6 +189,7 @@ const DropdownMenu = () => {
             <Link
               to="/settings/user"
               className="flex items-center py-2 px-3 light-btn-hover dark-btn-hover"
+              onClick={() => setIsDropdownOpen(false)} // Close dropdown
             >
               <span className="text-lg flex-shrink-0">
                 <IoSettingsOutline />
@@ -179,7 +197,10 @@ const DropdownMenu = () => {
               <span className="ms-2 text-sm">Settings</span>
             </Link>
             <button
-              onClick={() => logoutUser()}
+              onClick={() => {
+                logoutUser();
+                setIsDropdownOpen(false); // Close dropdown
+              }}
               className="flex items-center py-2 px-3 light-btn-hover dark-btn-hover w-full"
             >
               <span className="text-lg flex-shrink-0">
