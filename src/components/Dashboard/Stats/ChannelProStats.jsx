@@ -77,7 +77,7 @@ function ChannelProStats() {
   return (
     <div className="mb-16 md:mb-0">
       <section className="md:flex gap-3 mb-3">
-        <ul className="space-y space-y-2 text-sm font-normal-bold mb-4 md:mb-0 md:me-2 flex-grow md:max-w-xs">
+        <ul className="space-y space-y-2 text-sm font-normal-bold mb-4 md:mb-0 md:me-2 flex-grow md:max-w-sm">
           <li>
             <div className="bg-[#1e88e5] text-white p-3 py-7 text-center rounded-lg">
               <img
