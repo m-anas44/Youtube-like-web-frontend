@@ -42,11 +42,12 @@ const Login = () => {
       console.log("Login successful:", response.data);
       navigate("/");
     } catch (err) {
-      setError(
-        err.response && err.response.data
+      // Improved error message handling
+      const errorMessage =
+        err.response && err.response.data && err.response.data.message
           ? err.response.data.message
-          : "An error occurred"
-      );
+          : "Invalid credentials or an error occurred. Please try again.";
+      setError(errorMessage);
     } finally {
       setLoading(false);
     }
@@ -58,12 +59,18 @@ const Login = () => {
         <div className="w-full rounded-lg shadow border light-border-secondary dark-border-secondary md:mt-0 sm:max-w-md xl:p-0 bg-transparent">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
             <p className="text-[#f44336] text-xs font-normal">
-              It is suggested to login and register with your fake information. It may also include fake videos and channels. This project is just for demonstration of proficiency in development.
+              It is suggested to login and register with your fake information.
+              It may also include fake videos and channels. This project is just
+              for demonstration of proficiency in development.
             </p>
             <h1 className="text-xl font-bold font-normal-bold leading-tight tracking-tight light-text-primary dark-text-primary md:text-2xl">
               Login to your account
             </h1>
-            {error && <p className="text-red-500">{error}</p>}
+            {error && (
+              <div className="text-red-500 text-sm font-medium bg-red-100 p-3 rounded">
+                {error}
+              </div>
+            )}
             <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit}>
               {/* Username or Email */}
               <div>
@@ -79,7 +86,7 @@ const Login = () => {
                   id="usernameOrEmail"
                   placeholder="Enter your username or email"
                   className="border light-border-primary dark-border-primary light-text-primary dark-text-primary light-bg-secondary dark-bg-secondary text-sm rounded-lg block w-full p-2.5"
-                  required=""
+                  required
                   value={formData.usernameOrEmail}
                   onChange={handleChange}
                 />
@@ -99,7 +106,7 @@ const Login = () => {
                   id="password"
                   placeholder="••••••••"
                   className="border light-border-primary dark-border-primary light-text-primary dark-text-primary light-bg-secondary dark-bg-secondary text-sm rounded-lg block w-full p-2.5"
-                  required=""
+                  required
                   value={formData.password}
                   onChange={handleChange}
                 />
